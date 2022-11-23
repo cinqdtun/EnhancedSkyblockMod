@@ -65,6 +65,10 @@ public class ModConfig {
         has(category, subCategory, variable);
         return config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().get(variable).getAsFloat();
     }
+    public double getDouble(String category, String subCategory, String variable) throws Exception {
+        has(category, subCategory, variable);
+        return config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().get(variable).getAsDouble();
+    }
 
     public void setBoolean(String category, String subCategory, String variable, boolean value) throws Exception {
         has(category, subCategory, variable);
@@ -82,6 +86,9 @@ public class ModConfig {
     }
 
     public void setFloat(String category, String subCategory, String variable, float value) throws Exception {
+        has(category, subCategory, variable);
+        config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
+    }public void setDouble(String category, String subCategory, String variable, double value) throws Exception {
         has(category, subCategory, variable);
         config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
@@ -102,6 +109,10 @@ public class ModConfig {
     }
 
     protected void addFloat(JsonObject json, String category, String subCategory, String variable, float value){
+        setKey(json, category, subCategory);
+        json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
+    }
+    protected void addDouble(JsonObject json, String category, String subCategory, String variable, double value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
@@ -141,12 +152,12 @@ public class ModConfig {
     }
 
     protected void defaultConfigHandler(JsonObject json){
-        addInteger(json, "bobberTimer", "position", "x", 0);
-        addInteger(json, "bobberTimer", "position", "y", 0);
+        addDouble(json, "bobberTimer", "position", "x", 0);
+        addDouble(json, "bobberTimer", "position", "y", 0);
         addFloat(json, "bobberTimer", "position", "scale", 1.0f);
 
-        addInteger(json, "bundleTracker", "position", "x", 0);
-        addInteger(json, "bundleTracker", "position", "y", 0);
+        addDouble(json, "bundleTracker", "position", "x", 0);
+        addDouble(json, "bundleTracker", "position", "y", 0);
         addFloat(json, "bundleTracker", "position", "scale", 1.0f);
         addInteger(json, "bundleTracker", "loot", "bobomb", 0);
         addInteger(json, "bundleTracker", "loot", "pickonimbus2000", 0);
@@ -160,16 +171,16 @@ public class ModConfig {
         addInteger(json, "bundleTracker", "loot", "gemstoneMixture", 0);
         addInteger(json, "bundleTracker", "runs", "bundleNumber", 0);
 
-        addInteger(json, "fireFreeze", "position", "x", 0);
-        addInteger(json, "fireFreeze", "position", "y", 0);
+        addDouble(json, "fireFreeze", "position", "x", 0);
+        addDouble(json, "fireFreeze", "position", "y", 0);
         addFloat(json, "fireFreeze", "position", "scale", 1.0f);
 
-        addInteger(json, "firePillar", "position", "x", 0);
-        addInteger(json, "firePillar", "position", "y", 0);
+        addDouble(json, "firePillar", "position", "x", 0);
+        addDouble(json, "firePillar", "position", "y", 0);
         addFloat(json, "firePillar", "position", "scale", 1.0f);
 
-        addInteger(json, "fragRunTracker", "position", "x", 0);
-        addInteger(json, "fragRunTracker", "position", "y", 0);
+        addDouble(json, "fragRunTracker", "position", "x", 0);
+        addDouble(json, "fragRunTracker", "position", "y", 0);
         addFloat(json, "fragRunTracker", "position", "scale", 1.0f);
         addInteger(json, "fragRunTracker", "giant", "diamanteGiant", 0);
         addInteger(json, "fragRunTracker", "giant", "jollyPinkGiant", 0);
@@ -180,25 +191,25 @@ public class ModConfig {
         addInteger(json, "fragRunTracker", "loot", "LASRItem", 0);
         addInteger(json, "fragRunTracker", "loot", "bigFootItem", 0);
 
-        addInteger(json, "endermanPetTracker", "position", "x", 0);
-        addInteger(json, "endermanPetTracker", "position", "y", 0);
+        addDouble(json, "endermanPetTracker", "position", "x", 0);
+        addDouble(json, "endermanPetTracker", "position", "y", 0);
         addFloat(json, "endermanPetTracker", "position", "scale", 1.0f);
         addInteger(json, "endermanPetTracker", "loot", "rareEndermanPet", 0);
         addInteger(json, "endermanPetTracker", "loot", "epicEndermanPet", 0);
         addInteger(json, "endermanPetTracker", "loot", "legendaryEndermanPet", 0);
 
-        addInteger(json, "lowestHpSummon", "position", "x", 0);
-        addInteger(json, "lowestHpSummon", "position", "y", 0);
+        addDouble(json, "lowestHpSummon", "position", "x", 0);
+        addDouble(json, "lowestHpSummon", "position", "y", 0);
         addFloat(json, "lowestHpSummon", "position", "scale", 1.0f);
 
-        addInteger(json, "scavengedStats", "position", "x", 0);
-        addInteger(json, "scavengedStats", "position", "y", 0);
+        addDouble(json, "scavengedStats", "position", "x", 0);
+        addDouble(json, "scavengedStats", "position", "y", 0);
         addFloat(json, "scavengedStats", "position", "scale", 1.0f);
         addInteger(json, "scavengedStats", "loot", "piece", 0);
         addInteger(json, "scavengedStats", "stats", "time", 0);
 
-        addInteger(json, "xpRunTracker", "position", "x", 0);
-        addInteger(json, "xpRunTracker", "position", "y", 0);
+        addDouble(json, "xpRunTracker", "position", "x", 0);
+        addDouble(json, "xpRunTracker", "position", "y", 0);
         addFloat(json, "xpRunTracker", "position", "scale", 1.0f);
         addInteger(json, "xpRunTracker", "stats", "runs", 0);
         addInteger(json, "xpRunTracker", "stats", "totalXp", 0);

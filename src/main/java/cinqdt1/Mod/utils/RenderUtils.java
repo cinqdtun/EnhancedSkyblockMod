@@ -1,6 +1,7 @@
 package cinqdt1.Mod.utils;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.item.ItemStack;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RenderUtils {
-
+    public static final int DEFAULT_WIDTH = 640;
     public static void renderText(Minecraft mc, String text, float x, float y, double scale, boolean shadow) {
         double scaleReset = Math.pow(scale, -1);
         GL11.glScaled(scale, scale, scale);
@@ -46,8 +47,6 @@ public class RenderUtils {
     public static void renderOverlay(float x, float y, float scale, @Nullable ItemStack renderItem, int xTextOffset, int yTextOffset, @NotNull List<String> text, int linesOffset){
         List<Integer> spaceBetweenLines = new ArrayList<>();
         int tWidth = renderItem != null ? 16 : 0;
-        int tHeight = renderItem != null ? 16 : 0;
-        float fontHeight = Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT * scale;
 
         x += 3 * scale;
         y += 3 * scale;
@@ -66,12 +65,28 @@ public class RenderUtils {
         }
 
         if(renderItem != null){
-            renderItem(renderItem, x + 3 * scale, y + 3 * scale, scale);
+            renderItem(renderItem, getScaledRatio(x + 3 * scale), getScaledRatio(y + 3 * scale), getScaledRatio(scale));
         }
         i = 0;
         for(String line : text){
-            RenderUtils.renderText(Minecraft.getMinecraft(), line, x + (3 + tWidth + xTextOffset + spaceBetweenLines.get(i)) * scale, y + (3 + yTextOffset) * scale, scale, true);
+            RenderUtils.renderText(Minecraft.getMinecraft(), line, getScaledRatio(x + (3 + tWidth + xTextOffset + spaceBetweenLines.get(i)) * scale), getScaledRatio(y + (3 + yTextOffset) * scale), getScaledRatio(scale), true);
             i++;
         }
+    }
+    public static int getUnscaledRatio(int value){
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        return (int)((double)value / sr.getScaledWidth_double() * DEFAULT_WIDTH);
+    }
+    public static double getUnscaledRatio(double value){
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        return value / sr.getScaledWidth_double() * DEFAULT_WIDTH;
+    }
+    public static int getScaledRatio(int value){
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        return (int)((double)value / DEFAULT_WIDTH * sr.getScaledWidth_double());
+    }
+    public static float getScaledRatio(float value){
+        ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
+        return (float)((double)value / DEFAULT_WIDTH * sr.getScaledWidth_double());
     }
 }

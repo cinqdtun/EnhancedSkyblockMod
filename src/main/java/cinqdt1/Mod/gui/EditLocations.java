@@ -5,7 +5,7 @@ import cinqdt1.Mod.gui.buttons.GuiFeatureButtonResizable;
 import cinqdt1.Mod.utils.ItemUtils;
 
 import cinqdt1.Mod.cinqdt1Mod;
-import cinqdt1.Mod.config.ModConfiguration;
+import cinqdt1.Mod.utils.RenderUtils;
 import cinqdt1.Mod.utils.Utils;
 import gg.essential.api.EssentialAPI;
 import net.minecraft.client.gui.GuiButton;
@@ -227,8 +227,8 @@ public class EditLocations extends GuiScreen{
 	
 	private void mouseMoved(int mouseX, int mouseY) {
 		try {
-			int xMoved = mouseX - lastMouseX;
-			int yMoved = mouseY - lastMouseY;
+			double xMoved = RenderUtils.getUnscaledRatio((double)(mouseX - lastMouseX));
+			double yMoved = RenderUtils.getUnscaledRatio((double)(mouseY - lastMouseY));
 			if(buttonAction == Action.RESIZE) {
 				switch (buttonPerformed) {
 					case BOBBER_TIMER:
@@ -291,66 +291,66 @@ public class EditLocations extends GuiScreen{
 			}else if(buttonAction == Action.MOVE) {
 				switch (buttonPerformed) {
 					case BOBBER_TIMER:
-						int xValueBobberTimer = cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "x");
-						int yValueBobberTimer = cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("bobberTimer", "position", "x", xValueBobberTimer + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("bobberTimer", "position", "y", yValueBobberTimer + yMoved);
+						double xValueBobberTimer = cinqdt1Mod.newModConfig.getDouble("bobberTimer", "position", "x");
+						double yValueBobberTimer = cinqdt1Mod.newModConfig.getDouble("bobberTimer", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("bobberTimer", "position", "x", xValueBobberTimer + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("bobberTimer", "position", "y", yValueBobberTimer + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case BUNDLE_TRACKER:
-						int xValueBundleTracker = cinqdt1Mod.newModConfig.getInteger("bundleTracker", "position", "x");
-						int yValueBundleTracker = cinqdt1Mod.newModConfig.getInteger("bundleTracker", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("bundleTracker", "position", "x", xValueBundleTracker + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("bundleTracker", "position", "y", yValueBundleTracker + yMoved);
+						double xValueBundleTracker = cinqdt1Mod.newModConfig.getDouble("bundleTracker", "position", "x");
+						double yValueBundleTracker = cinqdt1Mod.newModConfig.getDouble("bundleTracker", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("bundleTracker", "position", "x", xValueBundleTracker + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("bundleTracker", "position", "y", yValueBundleTracker + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case FIRE_FREEZE_OVERLAY:
-						int xValueFireFreeze = cinqdt1Mod.newModConfig.getInteger("fireFreeze", "position", "x");
-						int yValueFireFreeze = cinqdt1Mod.newModConfig.getInteger("fireFreeze", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("fireFreeze", "position", "x", xValueFireFreeze + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("fireFreeze", "position", "y", yValueFireFreeze + yMoved);
+						double xValueFireFreeze = cinqdt1Mod.newModConfig.getDouble("fireFreeze", "position", "x");
+						double yValueFireFreeze = cinqdt1Mod.newModConfig.getDouble("fireFreeze", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("fireFreeze", "position", "x", xValueFireFreeze + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("fireFreeze", "position", "y", yValueFireFreeze + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case FIRE_PILLAR_OVERLAY:
-						int xValueFirePillar = cinqdt1Mod.newModConfig.getInteger("firePillar", "position", "x");
-						int yValueFirePillar = cinqdt1Mod.newModConfig.getInteger("firePillar", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("firePillar", "position", "x", xValueFirePillar + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("firePillar", "position", "y", yValueFirePillar + yMoved);
+						double xValueFirePillar = cinqdt1Mod.newModConfig.getDouble("firePillar", "position", "x");
+						double yValueFirePillar = cinqdt1Mod.newModConfig.getDouble("firePillar", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("firePillar", "position", "x", xValueFirePillar + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("firePillar", "position", "y", yValueFirePillar + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case FRAGRUN_TRACKER:
-						int xValueFragRunTracker = cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "x");
-						int yValueFragRunTracker = cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "position", "x", xValueFragRunTracker + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "position", "y", yValueFragRunTracker + yMoved);
+						double xValueFragRunTracker = cinqdt1Mod.newModConfig.getDouble("fragRunTracker", "position", "x");
+						double yValueFragRunTracker = cinqdt1Mod.newModConfig.getDouble("fragRunTracker", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("fragRunTracker", "position", "x", xValueFragRunTracker + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("fragRunTracker", "position", "y", yValueFragRunTracker + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case ENDERMAN_PET_TRACKER:
-						int xValueEndermanPetTracker = cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "x");
-						int yValueEndermanPetTracker = cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "position", "x", xValueEndermanPetTracker + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "position", "y", yValueEndermanPetTracker + yMoved);
+						double xValueEndermanPetTracker = cinqdt1Mod.newModConfig.getDouble("endermanPetTracker", "position", "x");
+						double yValueEndermanPetTracker = cinqdt1Mod.newModConfig.getDouble("endermanPetTracker", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("endermanPetTracker", "position", "x", xValueEndermanPetTracker + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("endermanPetTracker", "position", "y", yValueEndermanPetTracker + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case LOWEST_HP_SUMMON_DISPLAY:
-						int xValueLowestHpSummon = cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "x");
-						int yValueLowestHpSummon = cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("lowestHpSummon", "position", "x", xValueLowestHpSummon + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("lowestHpSummon", "position", "y", yValueLowestHpSummon + yMoved);
+						double xValueLowestHpSummon = cinqdt1Mod.newModConfig.getDouble("lowestHpSummon", "position", "x");
+						double yValueLowestHpSummon = cinqdt1Mod.newModConfig.getDouble("lowestHpSummon", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("lowestHpSummon", "position", "x", xValueLowestHpSummon + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("lowestHpSummon", "position", "y", yValueLowestHpSummon + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case SCAVENGED_STATS:
-						int xValueScavengedStats = cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "x");
-						int yValueScavengedStats = cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("scavengedStats", "position", "x", xValueScavengedStats + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("scavengedStats", "position", "y", yValueScavengedStats + yMoved);
+						double xValueScavengedStats = cinqdt1Mod.newModConfig.getDouble("scavengedStats", "position", "x");
+						double yValueScavengedStats = cinqdt1Mod.newModConfig.getDouble("scavengedStats", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("scavengedStats", "position", "x", xValueScavengedStats + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("scavengedStats", "position", "y", yValueScavengedStats + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case XP_RUN_TRACKER:
-						int xValueXpRunTracker = cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "x");
-						int yValueXpRunTracker = cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "y");
-						cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "position", "x", xValueXpRunTracker + xMoved);
-						cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "position", "y", yValueXpRunTracker + yMoved);
+						double xValueXpRunTracker = cinqdt1Mod.newModConfig.getDouble("xpRunTracker", "position", "x");
+						double yValueXpRunTracker = cinqdt1Mod.newModConfig.getDouble("xpRunTracker", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("xpRunTracker", "position", "x", xValueXpRunTracker + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("xpRunTracker", "position", "y", yValueXpRunTracker + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 				}
