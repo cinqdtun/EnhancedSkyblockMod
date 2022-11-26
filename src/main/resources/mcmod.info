@@ -1,16 +1,12 @@
 [
 {
-  "modid": "cinqdtunmod",
-  "name": "5dt1's Mod",
-  "description": "This is 5dt1's Mod",
+  "modid": "enhancedskyblockmod",
+  "name": "Enhanced Skyblock Mod",
+  "description": "A mod adding some QOL useful features for Hypixel Skyblock ",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "https://5dt1.com",
-  "updateUrl": "",
   "authorList": ["5dt1"],
-  "credits": "5dt1",
-  "logoFile": "assets/cinqdtunmod/head/head.png",
-  "screenshots": [],
-  "dependencies": []
+  "logoFile": "assets/cinqdtunmod/icons/ModLogo.png"
 }
 ]

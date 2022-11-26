@@ -32,7 +32,7 @@ public class cinqdt1Mod {
     public ModConfiguration config = new ModConfiguration();
     public static final ModConfig newModConfig = new ModConfig(new File("./config/cinqdtun.cfg"));
     public static KeyBinding[] keyBindings = new KeyBinding[2];
-    public static final String MOD_ID = "cinqdtunmod";
+    public static final String MOD_ID = "enhancedskyblockmod";
     public static final String VERSION = "1.0.0";
     public static final boolean devMode = true;
 
