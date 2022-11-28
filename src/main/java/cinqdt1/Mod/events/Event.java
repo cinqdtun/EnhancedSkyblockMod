@@ -3,7 +3,7 @@ package cinqdt1.Mod.events;
 import java.util.List;
 
 import cinqdt1.Mod.gui.EditLocations;
-import cinqdt1.Mod.handlers.PacketHandler;
+import cinqdt1.Mod.core.handlers.PacketHandler;
 import cinqdt1.Mod.utils.Utils;
 import gg.essential.vigilance.gui.SettingsGui;
 import net.minecraft.client.Minecraft;
@@ -11,6 +11,8 @@ import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.Slot;
+import net.minecraft.network.play.client.C01PacketChatMessage;
+import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.GuiIngameForge;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -88,5 +90,12 @@ public class Event {
 	@SubscribeEvent
 	public void onServerConnect(FMLNetworkEvent.ClientConnectedToServerEvent event) {
 		event.manager.channel().pipeline().addBefore("packet_handler", "cdt_mod_packet_handler", new PacketHandler());
+	}
+
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onPacket(PacketEvent.Sent event){
+		if(!(event.packet instanceof C01PacketChatMessage)) return;
+		String message = StringUtils.stripControlCodes(((C01PacketChatMessage)event.packet).getMessage());
+		if(MinecraftForge.EVENT_BUS.post(new ChatEvent.Sent(message))) event.setCanceled(true);
 	}
 }

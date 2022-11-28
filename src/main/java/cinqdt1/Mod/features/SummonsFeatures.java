@@ -41,57 +41,6 @@ public class SummonsFeatures {
 	private final Pattern bossDespawnSummonPattern = Pattern.compile("^The Seraph recalled your \\d summoned allies!$");
 	private final Pattern entityNamePattern = Pattern.compile("'s (.*) \\w*❤$");
 	private final Pattern hpPattern = Pattern.compile("\\s(\\w*)❤$");
-	private static final ArrayList<String> summonItemIDs = new ArrayList<String>(Arrays.asList(
-            "HEAVY_HELMET",
-            "ZOMBIE_KNIGHT_HELMET",
-            "SKELETOR_HELMET"
-    ));
-
-    public static boolean isSummon(Entity entity) {
-        if(entity instanceof EntityPlayer) {
-            return entity.getName().equals("Lost Adventurer");
-        } else if(entity instanceof EntityZombie || entity instanceof EntitySkeleton) {
-            for(int i = 0; i < 5; i++) {
-                ItemStack item = ((EntityMob) entity).getEquipmentInSlot(i);
-                if(summonItemIDs.contains(Utils.getSkyBlockID(item))) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @SubscribeEvent
-    public void onPreRenderEntity(RenderLivingEvent.Pre<EntityLivingBase> event) {
-        if(Utils.inSkyblock && !Utils.inDungeon) {
-            if(isSummon(event.entity)) {
-                if(ModConfiguration.hideSummons && event.entity.getDistanceToEntity(Minecraft.getMinecraft().thePlayer) < 5) {
-                    event.setCanceled(true);
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onAttack(AttackEntityEvent event) {
-        if(ModConfiguration.clickThroughSummons && Utils.inSkyblock && !Utils.inDungeon && isSummon(event.target)) {
-            Entity excludedEntity = Minecraft.getMinecraft().getRenderViewEntity();
-            double reach = Minecraft.getMinecraft().playerController.getBlockReachDistance();
-            Vec3 look = excludedEntity.getLook(0);
-
-            AxisAlignedBB boundingBox = excludedEntity.getEntityBoundingBox().addCoord(look.xCoord*reach, look.yCoord*reach, look.zCoord*reach).expand(1, 1, 1);
-            List<Entity> entitiesInRange = Minecraft.getMinecraft().theWorld.getEntitiesWithinAABBExcludingEntity(excludedEntity, boundingBox);
-            entitiesInRange.removeIf(entity -> !entity.canBeCollidedWith());
-            entitiesInRange.removeIf(SummonsFeatures::isSummon);
-
-            if(entitiesInRange.size() > 0) {
-                event.setCanceled(true);
-                Minecraft.getMinecraft().thePlayer.swingItem();
-                Minecraft.getMinecraft().playerController.attackEntity(Minecraft.getMinecraft().thePlayer, entitiesInRange.get(0));
-            }
-        }
-    }
-    
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
     	if (event.phase != Phase.START) return;
@@ -117,7 +66,6 @@ public class SummonsFeatures {
 	        }
     	}
     }
-    
     @SubscribeEvent
     public void onChat(ClientChatReceivedEvent event) {
     	String message = StringUtils.stripControlCodes(event.message.getUnformattedText());

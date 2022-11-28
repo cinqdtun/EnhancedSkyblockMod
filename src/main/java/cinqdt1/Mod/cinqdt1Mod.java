@@ -20,11 +20,6 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import scala.collection.parallel.ParIterableLike;
 
 @Mod(modid = cinqdt1Mod.MOD_ID, version = cinqdt1Mod.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class cinqdt1Mod {
@@ -53,6 +48,7 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new DisplayTitle());
         MinecraftForge.EVENT_BUS.register(new BobberTimer());
         MinecraftForge.EVENT_BUS.register(new BundleTracker());
+        MinecraftForge.EVENT_BUS.register(new CopyChatMessages());
         MinecraftForge.EVENT_BUS.register(new EndermanPetTracker());
         MinecraftForge.EVENT_BUS.register(new FastOpenSettings());
         MinecraftForge.EVENT_BUS.register(new FireFreeze());
@@ -82,8 +78,10 @@ public class cinqdt1Mod {
 	public void PostInit(FMLPostInitializationEvent event) {
 
 	}
+    /*
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onTick(TickEvent.ClientTickEvent event) {
 		if (event.phase != Phase.START) return;
 	}
+     */
 }

@@ -142,52 +142,28 @@ public class ModConfiguration extends Vigilant {
 	}
 	@Property(
 			type = PropertyType.SWITCH,
-			name = "Hide Summons",
-			description = "Enable Xp run tracker",
-			category = "QOL",
-			subcategory = "Summons"
-	)
-	public static boolean hideSummons = false;
-	
-	@Property(
-			type = PropertyType.SWITCH,
-			name = "Click Through Summons",
-			description = "Click through summons",
-			category = "QOL",
-			subcategory = "Summons"
-	)
-	public static boolean clickThroughSummons = false;
-	
-	@Property(
-			type = PropertyType.SWITCH,
 			name = "Lowest Summon",
 			description = "Show lowest summon as overlay",
-			category = "QOL",
+			category = "Misc",
 			subcategory = "Summons"
 	)
 	public static boolean showLowestSummon = false;
-	
 	@Property(
-			type = PropertyType.SWITCH ,
-			name = "Terminals Bot",
-			description = "Do terminals automatically",
-			category = "Dungeon",
-			subcategory = "Terminals"
+			type = PropertyType.SWITCH,
+			name = "Copy Chat Message",
+			description = "Copy clicked chat message into clipboard",
+			category = "Misc",
+			subcategory = "Chat"
 	)
-	public static boolean f7BotState = false;
-	
+	public static boolean copyMessageState = false;
 	@Property(
-			type = PropertyType.NUMBER,
-			name = "Terminals Click Delay",
-			description = "Delay beetween each click of bot",
-			category = "Dungeon",
-			subcategory = "Terminals",
-			min = 100,
-            max = 1000,
-            increment = 25
+			type = PropertyType.SWITCH,
+			name = "Override NEU pv",
+			description = "Override NEU pv on player messages by copy message\nYou don't need to enable this option if you don't have this NEU option activated",
+			category = "Misc",
+			subcategory = "Chat"
 	)
-	public static int terminalsBotDelayClick = 100;
-
+	public static boolean neuOverridePvPlayerMessagesState = false;
 	@Property(
 			type = PropertyType.SWITCH,
 			name = "Show overlay",
@@ -301,15 +277,6 @@ public class ModConfiguration extends Vigilant {
 			hidden = !cinqdt1Mod.devMode
 	)
 	public static int debugKeyAction = 0;
-
-	@Property(
-			type = PropertyType.SWITCH,
-			name = "Timing solver",
-			description = "Timing Solver",
-			category = "Dev",
-			subcategory = "Terms"
-	)
-	public static boolean timingSolverState = false;
 	@Property(
 			type = PropertyType.SWITCH,
 			name = "Fire Pillar Overlay",
@@ -318,14 +285,6 @@ public class ModConfiguration extends Vigilant {
 			subcategory = "Inferno Demonlord"
 	)
 	public static boolean firePillarOverlayState = false;
-	@Property(
-			type = PropertyType.SWITCH,
-			name = "Hide player in arachne",
-			description = "Hide players",
-			category = "Dev",
-			subcategory = "Spider's"
-	)
-	public static boolean arachneHidePlayerState = false;
 
 	public ModConfiguration() {
         super(new File("./config/5dt1's Mod.toml"), "5dt1's Mod", new JVMAnnotationPropertyCollector(), ConfigSorting.INSTANCE );

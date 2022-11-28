@@ -1,4 +1,4 @@
-package cinqdt1.Mod.handlers;
+package cinqdt1.Mod.core.handlers;
 
 import cinqdt1.Mod.events.PacketEvent;
 import io.netty.channel.ChannelDuplexHandler;
@@ -20,7 +20,7 @@ public class PacketHandler extends ChannelDuplexHandler
     @Override
     public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
         if (msg instanceof Packet) {
-            //if (MinecraftForge.EVENT_BUS.post(new PacketWriteEvent((Packet) msg))) return;
+            if (MinecraftForge.EVENT_BUS.post(new PacketEvent.Sent((Packet) msg))) return;
         }
 
         super.write(ctx, msg, promise);

@@ -25,6 +25,7 @@ public class PacketEvent extends Event {
     /**
      * Fired when a packet is sent from client
      */
+    @Cancelable
     public static class Sent extends PacketEvent
     {
         public Sent(Packet packet)
