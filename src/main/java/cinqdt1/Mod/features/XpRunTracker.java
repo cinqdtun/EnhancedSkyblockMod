@@ -5,20 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import cinqdt1.Mod.cinqdt1Mod;
+import cinqdt1.Mod.utils.ApiUtils;
 import cinqdt1.Mod.utils.RenderUtils;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import cinqdt1.Mod.config.ModConfiguration;
 import cinqdt1.Mod.events.DungeonEvent;
 import cinqdt1.Mod.events.RenderOverlay;
-import cinqdt1.Mod.handlers.APIHandler;
 import cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import static cinqdt1.Mod.utils.Utils.formatString;
 
 public class XpRunTracker {
 
@@ -41,10 +37,10 @@ public class XpRunTracker {
 		new Thread(() -> {
 			try {
 				String UUID = Utils.getFormattedPlayerUUID(mc.thePlayer);
-				JsonObject response = getProfileJson(UUID);
+				JsonObject response = ApiUtils.getProfileJson(UUID, ModConfiguration.apiKey);
 				if (response == null) return;
-				String currentPetName = getPetName(response, UUID);
-				double currentPetXp = getActivePetXp(response, UUID);
+				String currentPetName = ApiUtils.getPetName(response, UUID);
+				double currentPetXp = ApiUtils.getActivePetXp(response, UUID);
 				if (currentPetName == null || currentPetXp < 0 || !currentPetName.equals(petName)) return;
 				cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "runs", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "runs") + 1);
 				cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "totalXp", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "totalXp") + ((int) currentPetXp - petXpStart));
@@ -63,10 +59,10 @@ public class XpRunTracker {
 		if(!ModConfiguration.xpRunF6) return;
 		new Thread(() -> {
 			String UUID = Utils.getFormattedPlayerUUID(mc.thePlayer);
-			JsonObject response = getProfileJson(Utils.getFormattedPlayerUUID(mc.thePlayer));
+			JsonObject response = ApiUtils.getProfileJson(Utils.getFormattedPlayerUUID(mc.thePlayer), ModConfiguration.apiKey);
 			if(response == null) return;
-			String currentPetName = getPetName(response, UUID);
-			double currentPetXp = getActivePetXp(response, UUID) ;
+			String currentPetName = ApiUtils.getPetName(response, UUID);
+			double currentPetXp = ApiUtils.getActivePetXp(response, UUID) ;
 			if(currentPetName == null || currentPetXp < 0) return;
 			petName = currentPetName;
 			petXpStart = (int)currentPetXp;
@@ -99,35 +95,5 @@ public class XpRunTracker {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	private JsonObject getProfileJson(String UUID){
-		String latestProfile = APIHandler.getLatestProfileID(UUID, ModConfiguration.apiKey);
-		if (latestProfile == null) return null;
-		JsonObject response = APIHandler.getResponse("https://api.hypixel.net/skyblock/profile?profile=" + latestProfile + "&key=" + ModConfiguration.apiKey, true);
-		if (!response.get("success").getAsBoolean()) return null;
-		return response;
-	}
-
-	private String getPetName(JsonObject profile, String UUID){
-		JsonArray petsArray = profile.get("profile").getAsJsonObject().get("members").getAsJsonObject().get(UUID).getAsJsonObject().get("pets").getAsJsonArray();
-		for (JsonElement pet : petsArray) {
-			JsonObject petJSON = pet.getAsJsonObject();
-			if(petJSON.get("active").getAsBoolean()) {
-				return petJSON.get("type").getAsString();
-			}
-		}
-		return null;
-	}
-
-	private double getActivePetXp(JsonObject profile, String UUID){
-		JsonArray petsArray = profile.get("profile").getAsJsonObject().get("members").getAsJsonObject().get(UUID).getAsJsonObject().get("pets").getAsJsonArray();
-		for (JsonElement pet : petsArray) {
-			JsonObject petJSON = pet.getAsJsonObject();
-			if(petJSON.get("active").getAsBoolean()) {
-				return petJSON.get("exp").getAsDouble();
-			}
-		}
-		return -1;
 	}
 }
