@@ -2,18 +2,25 @@ package cinqdt1.Mod.features;
 
 import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.config.ModConfiguration;
+import cinqdt1.Mod.core.Color;
+import cinqdt1.Mod.core.renderer.ZombieNoLayersRender;
+import cinqdt1.Mod.core.renderer.RenderManager;
+import cinqdt1.Mod.events.RenderLivingEvent;
 import cinqdt1.Mod.events.RenderOverlay;
 import cinqdt1.Mod.utils.ItemUtils;
 import cinqdt1.Mod.utils.RenderUtils;
 import cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.monster.EntityBlaze;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StringUtils;
-import net.minecraftforge.client.event.RenderLivingEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -39,6 +46,8 @@ public class FirePillar {
     private UUID pillarID = null;
     private int timeOutPillar = 0;
     private int hits = 0;
+
+    private List<EntityLivingBase> unrenderedEntities = new ArrayList<>();
 
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event){
@@ -110,13 +119,40 @@ public class FirePillar {
             }
         }
     }
+    @SubscribeEvent
+    public void onPreRender(RenderLivingEvent.Pre<EntityLivingBase> event){
+        if(event.entity instanceof EntityZombie) {
+            RenderManager.RenderData<EntityZombie> renderData =
+                    new RenderManager.RenderData<>((EntityZombie) event.entity, new ZombieNoLayersRender(Minecraft.getMinecraft().getRenderManager()), true, new Color((byte) 0, (byte) 255, (byte) 0), true, false);
+            cinqdt1Mod.renderManager.addEntity(renderData);
+        }
+    }
 
     @SubscribeEvent
-    public void onRenderEntity(RenderLivingEvent.Pre<EntityBlaze> event){
-        if(!Utils.inCrimsonIsle) return;
-        if(!isBossFounded) return;
-        if(event.entity.getUniqueID() != bossID) return;
-        event.renderer.setRenderOutlines(true);
+    public void onRenderWorldLast(RenderWorldLastEvent event){
+        for(int i = 0; i < unrenderedEntities.size(); i++) {
+            EntityLivingBase entity = unrenderedEntities.get(i);
+
+            //GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
+            //GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
+            GlStateManager.disableDepth();
+            ZombieNoLayersRender renderer = new ZombieNoLayersRender(mc.getRenderManager());
+            Entity renderViewEntity = this.mc.getRenderViewEntity();
+            double xViewEntity = renderViewEntity.lastTickPosX + (renderViewEntity.posX - renderViewEntity.lastTickPosX) * (double)event.partialTicks;
+            double yViewEntity = renderViewEntity.lastTickPosY + (renderViewEntity.posY - renderViewEntity.lastTickPosY) * (double)event.partialTicks;
+            double zViewEntity = renderViewEntity.lastTickPosZ + (renderViewEntity.posZ - renderViewEntity.lastTickPosZ) * (double)event.partialTicks;
+            double xEntity = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double)event.partialTicks;
+            double yEntity = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double)event.partialTicks;
+            double zEntity = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double)event.partialTicks;
+            double x = xEntity - xViewEntity;
+            double y = yEntity - yViewEntity;
+            double z = zEntity - zViewEntity;
+            renderer.doRender((EntityZombie) entity, x, y, z, entity.rotationYaw, event.partialTicks);
+            GlStateManager.enableDepth();
+            //GL11.glPopAttrib();
+
+        }
+        unrenderedEntities.clear();
     }
 
     @SubscribeEvent

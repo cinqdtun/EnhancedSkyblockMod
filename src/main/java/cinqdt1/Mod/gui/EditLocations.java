@@ -227,8 +227,8 @@ public class EditLocations extends GuiScreen{
 	
 	private void mouseMoved(int mouseX, int mouseY) {
 		try {
-			double xMoved = RenderUtils.getUnscaledRatio((double)(mouseX - lastMouseX));
-			double yMoved = RenderUtils.getUnscaledRatio((double)(mouseY - lastMouseY));
+			double xMoved = RenderUtils.getUnscaledWidthRatio((double)(mouseX - lastMouseX));
+			double yMoved = RenderUtils.getUnscaledWidthRatio((double)(mouseY - lastMouseY));
 			if(buttonAction == Action.RESIZE) {
 				switch (buttonPerformed) {
 					case BOBBER_TIMER:

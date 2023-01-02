@@ -2,8 +2,8 @@ package cinqdt1.Mod.features;
 
 import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.config.ModConfiguration;
+import cinqdt1.Mod.events.RenderLivingEvent;
 import cinqdt1.Mod.events.RenderOverlay;
-import cinqdt1.Mod.utils.ItemUtils;
 import cinqdt1.Mod.utils.RenderUtils;
 import cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -14,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 

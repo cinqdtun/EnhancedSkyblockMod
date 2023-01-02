@@ -30,7 +30,7 @@ import org.lwjgl.opengl.GL11;
 import scala.Int;
 
 public class HighlightChestDungeons {
-	public static final ResourceLocation GUI_BACKGROUND = new ResourceLocation(cinqdt1Mod.MOD_ID, "gui/gui_default_180x28.png");
+	public static final ResourceLocation GUI_BACKGROUND = new ResourceLocation("esm", "gui/gui_default_180x28.png");
     private final Pattern unopenedChestPattern= Pattern.compile("^Chests expire in .*!$");
 	@SubscribeEvent
     public void onGuiRender(GuiChestBackgroundDrawnEvent event) {
@@ -74,7 +74,7 @@ public class HighlightChestDungeons {
 					Field xSizeField = ReflectionHelper.findField(GuiContainer.class, "xSize", "field_146999_f");
 					Field guiLeftField = ReflectionHelper.findField(GuiContainer.class, "guiLeft", "field_147003_i");
 					Field guiTopField = ReflectionHelper.findField(GuiContainer.class, "guiTop", "field_147009_r");
-					inventory.mc.getTextureManager().bindTexture(HighlightChestDungeons.GUI_BACKGROUND);
+					Minecraft.getMinecraft().getTextureManager().bindTexture(HighlightChestDungeons.GUI_BACKGROUND);
 					int xOverlay = (int) guiLeftField.get(inventory) + (int) xSizeField.get(inventory) + 4;
 					int yOverlay = (int) guiTopField.get(inventory);
 					int overlayTextureWidth = 180;

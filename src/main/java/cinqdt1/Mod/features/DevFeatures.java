@@ -2,7 +2,12 @@ package cinqdt1.Mod.features;
 
 import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.config.ModConfiguration;
+import cinqdt1.Mod.core.handlers.CustomNetworkPacketHandler;
+import cinqdt1.Mod.core.network.NetworkManager;
+import cinqdt1.Mod.core.network.packets.KeepConnectedPacket;
+import cinqdt1.Mod.gui.PartyGUI;
 import cinqdt1.Mod.utils.Utils;
+import io.netty.channel.ChannelHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -15,9 +20,16 @@ import java.awt.datatransfer.StringSelection;
 
 public class DevFeatures {
     private final Minecraft mc = Minecraft.getMinecraft();
+    NetworkManager networkManager;
+    public DevFeatures(){
+        networkManager = new NetworkManager();
+    }
     @SubscribeEvent
     public void onKey(InputEvent.KeyInputEvent event){
         if(cinqdt1Mod.keyBindings[1].isPressed()) {
+            Minecraft.getMinecraft().displayGuiScreen(new PartyGUI());
+           // if(cinqdt1Mod.networkManager.getConnexionState() != NetworkManager.State.CONNECTED) return;
+            //cinqdt1Mod.networkManager.sendPacket(new KeepConnectedPacket());
             switch(ModConfiguration.debugKeyAction){
                 case 0:
                     if(mc.thePlayer == null) return;

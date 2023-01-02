@@ -3,6 +3,10 @@ package cinqdt1.Mod;
 import java.io.File;
 
 import cinqdt1.Mod.config.ModConfig;
+import cinqdt1.Mod.core.ClientProxy;
+import cinqdt1.Mod.core.network.NetworkManager;
+import cinqdt1.Mod.core.renderer.RenderManager;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Keyboard;
 
 import cinqdt1.Mod.commands.*;
@@ -23,18 +27,24 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = cinqdt1Mod.MOD_ID, version = cinqdt1Mod.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class cinqdt1Mod {
+    public static final Minecraft mc = Minecraft.getMinecraft();
     public static final cinqdt1Mod instance = new cinqdt1Mod();
     public ModConfiguration config = new ModConfiguration();
     public static final ModConfig newModConfig = new ModConfig(new File("./config/cinqdtun.cfg"));
     public static KeyBinding[] keyBindings = new KeyBinding[2];
     public static final String MOD_ID = "enhancedskyblockmod";
+    public static final NetworkManager networkManager = new NetworkManager();
     public static final String VERSION = "1.0.0";
     public static final boolean devMode = true;
+    public static final ClientProxy PROXY = new ClientProxy();
+    public static final RenderManager renderManager = new RenderManager();
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ClientCommandHandler.instance.registerCommand(new MainCommand());
+        ClientCommandHandler.instance.registerCommand(new PartyCommand());
 		ClientCommandHandler.instance.registerCommand(new NotCountRun());
+        //PROXY.init();
 	}
 
 	@EventHandler
@@ -44,6 +54,8 @@ public class cinqdt1Mod {
         newModConfig.init();
 
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(networkManager);
+        MinecraftForge.EVENT_BUS.register(renderManager);
         MinecraftForge.EVENT_BUS.register(new Event());
         MinecraftForge.EVENT_BUS.register(new DisplayTitle());
         MinecraftForge.EVENT_BUS.register(new BobberTimer());
@@ -59,6 +71,7 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new HighlightChestDungeons());
         MinecraftForge.EVENT_BUS.register(new SummonsFeatures());
         MinecraftForge.EVENT_BUS.register(new ScavengedStats());
+
         if(devMode){
             MinecraftForge.EVENT_BUS.register(new DevFeatures());
         }
@@ -76,8 +89,10 @@ public class cinqdt1Mod {
 
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent event) {
+        new Thread(networkManager::initConnexion).start();
 
 	}
+
     /*
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
 	public void onTick(TickEvent.ClientTickEvent event) {

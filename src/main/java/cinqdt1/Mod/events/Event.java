@@ -2,12 +2,14 @@ package cinqdt1.Mod.events;
 
 import java.util.List;
 
+import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.gui.EditLocations;
 import cinqdt1.Mod.core.handlers.PacketHandler;
 import cinqdt1.Mod.utils.Utils;
 import gg.essential.vigilance.gui.SettingsGui;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.Slot;
@@ -97,5 +99,19 @@ public class Event {
 		if(!(event.packet instanceof C01PacketChatMessage)) return;
 		String message = StringUtils.stripControlCodes(((C01PacketChatMessage)event.packet).getMessage());
 		if(MinecraftForge.EVENT_BUS.post(new ChatEvent.Sent(message))) event.setCanceled(true);
+	}
+
+	@SubscribeEvent
+	public void onPreRenderEntity(net.minecraftforge.client.event.RenderLivingEvent.Pre<EntityZombie> event){
+		if(!cinqdt1Mod.renderManager.isModRenderEvent()) {
+			if (MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Pre(event.entity, event.renderer, event.x, event.y, event.z))) {
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onPostRenderEntity(net.minecraftforge.client.event.RenderLivingEvent.Post<EntityZombie> event){
+		MinecraftForge.EVENT_BUS.post(new RenderLivingEvent.Post(event.entity, event.renderer, event.x, event.y, event.z));
 	}
 }

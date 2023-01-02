@@ -28,14 +28,14 @@ public class GuiFeatureButton extends GuiButton {
 	private final int hoveredButtonColor = Utils.getIntColorFromRGBAColor(255,255,255,40);
 
 	public GuiFeatureButton(int x, int y, float scale, @Nullable ItemStack renderItem, int xTextOffset, int yTextOffset, @NotNull List<String> text, int linesOffset, EditLocations.FeatureButton feature) {
-		super(0, RenderUtils.getScaledRatio(x), RenderUtils.getScaledRatio(y), text.get(0));
+		super(0, RenderUtils.getScaledWidthRatio(x), RenderUtils.getScaledWidthRatio(y), text.get(0));
 		this.scale = scale;
 		this.renderItem = renderItem;
 		this.tWidth = renderItem != null ? 16 : 0;
 		this.xTextOffset = xTextOffset;
 		this.yTextOffset = yTextOffset;
 		this.text = text;
-		float fontHeight = RenderUtils.getScaledRatio(Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT * scale);
+		float fontHeight = RenderUtils.getScaledWidthRatio(Minecraft.getMinecraft().fontRendererObj.FONT_HEIGHT * scale);
 		this.spaceBetweenLines = new ArrayList<>();
 		this.spaceBetweenLines.add(0);
 		this.baseWidth = 0;
@@ -60,9 +60,9 @@ public class GuiFeatureButton extends GuiButton {
 		if(renderItem != null) this.baseWidth += tWidth;
 
 		this.baseWidth += 2 * buttonOffset + (text.size() - 1) * linesOffset + xTextOffset;
-		this.width = RenderUtils.getScaledRatio((int) (baseWidth * scale ));
-		this.height += Math.max(RenderUtils.getScaledRatio(tWidth * scale), highestLine);
-		this.height += RenderUtils.getScaledRatio((2 * buttonOffset + yTextOffset) * scale);
+		this.width = RenderUtils.getScaledWidthRatio((int) (baseWidth * scale ));
+		this.height += Math.max(RenderUtils.getScaledWidthRatio(tWidth * scale), highestLine);
+		this.height += RenderUtils.getScaledWidthRatio((2 * buttonOffset + yTextOffset) * scale);
 	}
 	
 	@Override
@@ -71,11 +71,11 @@ public class GuiFeatureButton extends GuiButton {
 		int color = isMouseOver() ? hoveredButtonColor : defaultButtonColor;
 		drawRect(xPosition, yPosition, xPosition + width, yPosition + height, color);
 		if(renderItem != null){
-			RenderUtils.renderItem(renderItem, xPosition + RenderUtils.getScaledRatio(buttonOffset * scale), yPosition + RenderUtils.getScaledRatio(buttonOffset * scale), RenderUtils.getScaledRatio(scale));
+			RenderUtils.renderItem(renderItem, xPosition + RenderUtils.getScaledWidthRatio(buttonOffset * scale), yPosition + RenderUtils.getScaledWidthRatio(buttonOffset * scale), RenderUtils.getScaledWidthRatio(scale));
 		}
 		int i = 0;
 		for(String line : text){
-			RenderUtils.renderText(Minecraft.getMinecraft(), line, (xPosition + RenderUtils.getScaledRatio(buttonOffset + tWidth + xTextOffset + spaceBetweenLines.get(i)) * scale), yPosition + RenderUtils.getScaledRatio((buttonOffset + yTextOffset) * scale), RenderUtils.getScaledRatio(scale), true);
+			RenderUtils.renderText(Minecraft.getMinecraft(), line, (xPosition + RenderUtils.getScaledWidthRatio(buttonOffset + tWidth + xTextOffset + spaceBetweenLines.get(i)) * scale), yPosition + RenderUtils.getScaledWidthRatio((buttonOffset + yTextOffset) * scale), RenderUtils.getScaledWidthRatio(scale), true);
 			i++;
 		}
 	}
