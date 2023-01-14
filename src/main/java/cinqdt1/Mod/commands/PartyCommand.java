@@ -1,10 +1,8 @@
 package cinqdt1.Mod.commands;
 
-import cinqdt1.Mod.gui.PartyGUI;
-import cinqdt1.Mod.utils.Utils;
+import cinqdt1.Mod.gui.PartyFinderGUI;
 import net.minecraft.client.Minecraft;
 import net.minecraft.command.CommandBase;
-import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
 
 public class PartyCommand extends CommandBase {
@@ -24,11 +22,11 @@ public class PartyCommand extends CommandBase {
     }
 
     @Override
-    public void processCommand(ICommandSender arg0, String[] arg1) throws CommandException {
+    public void processCommand(ICommandSender arg0, String[] arg1){
         new Thread(() -> {
             try {
                 Thread.sleep(1000);
-                Minecraft.getMinecraft().displayGuiScreen(new PartyGUI());
+                Minecraft.getMinecraft().displayGuiScreen(new PartyFinderGUI());
             } catch (InterruptedException ignored) {}
         });
     }

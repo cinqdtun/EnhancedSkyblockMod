@@ -16,25 +16,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RenderManager {
-    private List<RenderData<? extends EntityLivingBase>> renderEntitiesQueue = new ArrayList<>();
+    private final List<RenderData<? extends EntityLivingBase>> renderEntitiesQueue = new ArrayList<>();
     private boolean isRendering = false;
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event){
-        for(int i = 0; i < renderEntitiesQueue.size(); i++){
-            RenderData<? extends EntityLivingBase> renderData = renderEntitiesQueue.get(i);
+        for (RenderData<? extends EntityLivingBase> renderData : renderEntitiesQueue) {
             Entity renderViewEntity = cinqdt1Mod.mc.getRenderViewEntity();
-            double xViewEntity = renderViewEntity.lastTickPosX + (renderViewEntity.posX - renderViewEntity.lastTickPosX) * (double)event.partialTicks;
-            double yViewEntity = renderViewEntity.lastTickPosY + (renderViewEntity.posY - renderViewEntity.lastTickPosY) * (double)event.partialTicks;
-            double zViewEntity = renderViewEntity.lastTickPosZ + (renderViewEntity.posZ - renderViewEntity.lastTickPosZ) * (double)event.partialTicks;
-            double xEntity = renderData.entity.lastTickPosX + (renderData.entity.posX - renderData.entity.lastTickPosX) * (double)event.partialTicks;
-            double yEntity = renderData.entity.lastTickPosY + (renderData.entity.posY - renderData.entity.lastTickPosY) * (double)event.partialTicks;
-            double zEntity = renderData.entity.lastTickPosZ + (renderData.entity.posZ - renderData.entity.lastTickPosZ) * (double)event.partialTicks;
+            double xViewEntity = renderViewEntity.lastTickPosX + (renderViewEntity.posX - renderViewEntity.lastTickPosX) * (double) event.partialTicks;
+            double yViewEntity = renderViewEntity.lastTickPosY + (renderViewEntity.posY - renderViewEntity.lastTickPosY) * (double) event.partialTicks;
+            double zViewEntity = renderViewEntity.lastTickPosZ + (renderViewEntity.posZ - renderViewEntity.lastTickPosZ) * (double) event.partialTicks;
+            double xEntity = renderData.entity.lastTickPosX + (renderData.entity.posX - renderData.entity.lastTickPosX) * (double) event.partialTicks;
+            double yEntity = renderData.entity.lastTickPosY + (renderData.entity.posY - renderData.entity.lastTickPosY) * (double) event.partialTicks;
+            double zEntity = renderData.entity.lastTickPosZ + (renderData.entity.posZ - renderData.entity.lastTickPosZ) * (double) event.partialTicks;
             double x = xEntity - xViewEntity;
             double y = yEntity - yViewEntity;
             double z = zEntity - zViewEntity;
-            if (MinecraftForge.EVENT_BUS.post(new CustomRenderLivingEntity.Pre(renderData.entity, renderData.renderer, x, y, z))) return;
-            if(!this.preRender(renderData)) continue;
+            if (MinecraftForge.EVENT_BUS.post(new CustomRenderLivingEntity.Pre(renderData.entity, renderData.renderer, x, y, z)))
+                return;
+            if (!this.preRender(renderData)) continue;
             this.isRendering = true;
             renderData.renderer.doRender(renderData.entity, x, y, z, renderData.entity.rotationYaw, event.partialTicks);
             this.isRendering = false;
@@ -51,7 +51,7 @@ public class RenderManager {
         }
         if(data.drawOnTop) GlStateManager.disableDepth();
         if(!data.renderTexture) GlStateManager.disableTexture2D();
-        GlStateManager.color((float)data.entityColor.getRed() / 255f, (float)data.entityColor.getGreen() / 255f, (float) data.entityColor.getBlue() / 255f, data.entityColor.getAlpha());
+        GlStateManager.color((float)data.entityColor.getRed() / 255f, (float)data.entityColor.getGreen() / 255f, (float) data.entityColor.getBlue() / 255f, (float) data.entityColor.getAlpha() / 255f);
         return true;
     }
 

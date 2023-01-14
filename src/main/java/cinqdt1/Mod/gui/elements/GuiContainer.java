@@ -22,7 +22,7 @@ public abstract class GuiContainer extends Gui {
         this.bar = new ScrollBar(x + width + 10, y, 5, height, contentHeight, height);
     }
 
-    public void draw(Minecraft mc, int mouseX, int mouseY){
+    public void draw(Minecraft mc, int mouseX, int mouseY, boolean shouldRenderEffects){
         bar.drawScrollBar(mouseX, mouseY);
         drawRect(x, y, x + width, y + height, backgroundColor.getColorInteger());
     }
