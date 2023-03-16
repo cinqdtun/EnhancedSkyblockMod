@@ -30,7 +30,7 @@ import org.lwjgl.opengl.GL11;
 import scala.Int;
 
 public class HighlightChestDungeons {
-	public static final ResourceLocation GUI_BACKGROUND = new ResourceLocation(cinqdt1Mod.MOD_ID, "gui/gui_default_180x28.png");
+	public static final ResourceLocation GUI_BACKGROUND = new ResourceLocation("esm", "gui/gui_default_180x28.png");
     private final Pattern unopenedChestPattern= Pattern.compile("^Chests expire in .*!$");
 	@SubscribeEvent
     public void onGuiRender(GuiChestBackgroundDrawnEvent event) {

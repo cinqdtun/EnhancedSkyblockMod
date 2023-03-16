@@ -52,7 +52,7 @@ public class BundleTracker {
                 Matcher matchBobomb = bobombPattern.matcher(unformattedName);
                 Matcher matchDivanFragment = divanFragmentPattern.matcher(unformattedName);
                 if (matchBobomb.find()) {
-                    if (matchBobomb.group(1).isEmpty()) {
+                    if (matchBobomb.groupCount() < 1) {
                         cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + 1);
                     } else {
                         cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + Integer.parseInt(matchBobomb.group(1)));
@@ -60,10 +60,10 @@ public class BundleTracker {
                     cinqdt1Mod.newModConfig.saveConfig();
                     countedUUIDS.add(armorStandUUID);
                 } else if (matchDivanFragment.find()) {
-                    if (matchDivanFragment.group(1).isEmpty()) {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divan", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divan") + 1);
+                    if (matchDivanFragment.groupCount() < 1) {
+                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + 1);
                     } else {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divan", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divan") + Integer.parseInt(matchDivanFragment.group(1)));
+                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + Integer.parseInt(matchDivanFragment.group(1)));
                     }
                     cinqdt1Mod.newModConfig.saveConfig();
                     countedUUIDS.add(armorStandUUID);
@@ -78,6 +78,7 @@ public class BundleTracker {
                         cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "gemstoneMixture", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "gemstoneMixture") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
+                        break;
                     case "Recall Potion":
                         cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "recallPotion", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "recallPotion") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
