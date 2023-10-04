@@ -45,6 +45,7 @@ public class ScavengedStats {
         if(event.type == 2) return;
         if(message.contains(":")) return;
         if(!scavengedPattern.matcher(message).find()) return;
+
         try{
             cinqdt1Mod.newModConfig.setInteger("scavengedStats", "loot", "piece", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "loot", "piece") + 1);
             cinqdt1Mod.newModConfig.saveConfig();

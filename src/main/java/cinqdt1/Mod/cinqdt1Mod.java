@@ -1,13 +1,10 @@
 package cinqdt1.Mod;
 
-import java.io.File;
-
+import cinqdt1.Mod.commands.MainCommand;
+import cinqdt1.Mod.commands.NotCountRun;
 import cinqdt1.Mod.config.ModConfig;
-import org.lwjgl.input.Keyboard;
-
-import cinqdt1.Mod.commands.*;
 import cinqdt1.Mod.config.ModConfiguration;
-import cinqdt1.Mod.events.*;
+import cinqdt1.Mod.events.Event;
 import cinqdt1.Mod.features.*;
 import cinqdt1.Mod.utils.DisplayTitle;
 import gg.essential.vigilance.Vigilance;
@@ -20,6 +17,9 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.lwjgl.input.Keyboard;
+
+import java.io.File;
 
 @Mod(modid = cinqdt1Mod.MOD_ID, version = cinqdt1Mod.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class cinqdt1Mod {
@@ -46,9 +46,11 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new Event());
         MinecraftForge.EVENT_BUS.register(new DisplayTitle());
+        MinecraftForge.EVENT_BUS.register(new BatFirework());
         MinecraftForge.EVENT_BUS.register(new BobberTimer());
         MinecraftForge.EVENT_BUS.register(new BundleTracker());
         MinecraftForge.EVENT_BUS.register(new CopyChatMessages());
+        MinecraftForge.EVENT_BUS.register(new EnhancedChat());
         MinecraftForge.EVENT_BUS.register(new EndermanPetTracker());
         MinecraftForge.EVENT_BUS.register(new FastOpenSettings());
         MinecraftForge.EVENT_BUS.register(new FireFreeze());
@@ -57,6 +59,7 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new XpRunTracker());
         MinecraftForge.EVENT_BUS.register(new FragRunTracker());
         MinecraftForge.EVENT_BUS.register(new HighlightChestDungeons());
+        MinecraftForge.EVENT_BUS.register(new MythologicalHp());
         MinecraftForge.EVENT_BUS.register(new SummonsFeatures());
         MinecraftForge.EVENT_BUS.register(new ScavengedStats());
         if(devMode){

@@ -1,15 +1,16 @@
 package cinqdt1.Mod.gui;
 
+import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.gui.buttons.GuiFeatureButton;
 import cinqdt1.Mod.gui.buttons.GuiFeatureButtonResizable;
 import cinqdt1.Mod.utils.ItemUtils;
-
-import cinqdt1.Mod.cinqdt1Mod;
 import cinqdt1.Mod.utils.RenderUtils;
 import cinqdt1.Mod.utils.Utils;
 import gg.essential.api.EssentialAPI;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ public class EditLocations extends GuiScreen{
 	private Action buttonAction = Action.NONE;
 	private int lastMouseX = -1;
 	private int lastMouseY = -1;
-	
+
+	private GuiFeatureButton batFirework;
 	private GuiFeatureButton bobberTimer;
 	private GuiFeatureButton bundleTracker;
 	private GuiFeatureButton fireFreezeOverlay;
@@ -28,9 +30,11 @@ public class EditLocations extends GuiScreen{
 	private GuiFeatureButton fragRunTracker;
 	private GuiFeatureButton endermanPetTracker;
 	private GuiFeatureButton lowestHpSummonDisplay;
+	private GuiFeatureButton mythologicalHp;
 	private GuiFeatureButton scavengedStats;
 	private GuiFeatureButton xpRunTracker;
 
+	private GuiFeatureButtonResizable batFireworkResize;
 	private GuiFeatureButtonResizable bobberTimerResize;
 	private GuiFeatureButtonResizable bundleTrackerResize;
 	private GuiFeatureButtonResizable fireFreezeOverlayResize;
@@ -38,37 +42,15 @@ public class EditLocations extends GuiScreen{
 	private GuiFeatureButtonResizable fragRunTrackerResize;
 	private GuiFeatureButtonResizable endermanPetTrackerResize;
 	private GuiFeatureButtonResizable lowestHpSummonDisplayResize;
+	private GuiFeatureButtonResizable mythologicalHpResize;
 	private GuiFeatureButtonResizable scavengedStatsResize;
 	private GuiFeatureButtonResizable xpRunTrackerResize;
 
-	public enum FeatureButton{
-		BOBBER_TIMER,
-		BUNDLE_TRACKER,
-		FIRE_FREEZE_OVERLAY,
-		FIRE_PILLAR_OVERLAY,
-		FRAGRUN_TRACKER,
-		ENDERMAN_PET_TRACKER,
-		LOWEST_HP_SUMMON_DISPLAY,
-		SCAVENGED_STATS,
-		XP_RUN_TRACKER,
-		NONE
-	}
-
-	public enum Action{
-		MOVE,
-		RESIZE,
-		NONE
-	}
-	
-	@Override
-	public boolean doesGuiPauseGame() {
-		return false;
-	}
-	
 	@Override
 	public void initGui() {
 		super.initGui();
 
+		List<String> batFireworkText = new ArrayList<>();
 		List<String> bobberTimerText = new ArrayList<>();
 		List<String> bundleTrackerText = new ArrayList<>();
 		List<String> fireFreezeText = new ArrayList<>();
@@ -76,11 +58,13 @@ public class EditLocations extends GuiScreen{
 		List<String> fragRunText = new ArrayList<>();
 		List<String> endermanPetText = new ArrayList<>();
 		List<String> lowestSummonText = new ArrayList<>();
+		List<String> mythologicalText = new ArrayList<>();
 		List<String> scavengedStatsText = new ArrayList<>();
 		List<String> xpRuns = new ArrayList<>();
 
-		bobberTimerText.add(EnumChatFormatting.AQUA + "Bobber Time:");
-		bobberTimerText.add(EnumChatFormatting.AQUA  + Utils.getTimeBetween(0, 3));
+		batFireworkText.add(EnumChatFormatting.RED + "11.31");
+
+		bobberTimerText.add(EnumChatFormatting.RED  + Utils.getTimeBetween(0, 3));
 
 		bundleTrackerText.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "Crystal Loot Bundle\n" +
 				EnumChatFormatting.GOLD + "Bob-omb :\n" +
@@ -161,6 +145,8 @@ public class EditLocations extends GuiScreen{
 		lowestSummonText.add(EnumChatFormatting.GREEN + "Tank Zombie\n" +
 				EnumChatFormatting.RED + "126k");
 
+		mythologicalText.add(EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.GRAY + "Lv260" + EnumChatFormatting.DARK_GRAY + "]" + EnumChatFormatting.DARK_GREEN + " Exalted Gaia Construct" + EnumChatFormatting.YELLOW + " 876k" + EnumChatFormatting.WHITE + "/" + EnumChatFormatting.GREEN + "1.5M" + EnumChatFormatting.RED + "❤");
+
 		scavengedStatsText.add(EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + "Scavenged Stats\n" +
 				"Avg time per pair: 3m 40s");
 
@@ -174,19 +160,22 @@ public class EditLocations extends GuiScreen{
 				EnumChatFormatting.GRAY + "98");
 
 		try {
-			bobberTimer = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "x"), cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "y"), cinqdt1Mod.newModConfig.getFloat("bobberTimer", "position", "scale"), null, 0, 0,bobberTimerText, 20, FeatureButton.BOBBER_TIMER);
+			batFirework = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("batFirework", "position", "x"), cinqdt1Mod.newModConfig.getInteger("batFirework", "position", "y"), cinqdt1Mod.newModConfig.getFloat("batFirework", "position", "scale"), ItemUtils.getBatFireworkTexture(), 4, 3,batFireworkText, 0, FeatureButton.BAT_FIREWORK);
+			bobberTimer = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "x"), cinqdt1Mod.newModConfig.getInteger("bobberTimer", "position", "y"), cinqdt1Mod.newModConfig.getFloat("bobberTimer", "position", "scale"), new ItemStack(Items.fishing_rod), 4, 3,bobberTimerText, 20, FeatureButton.BOBBER_TIMER);
 			bundleTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("bundleTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("bundleTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("bundleTracker", "position", "scale"),null, 0, 0, bundleTrackerText, 0, FeatureButton.BUNDLE_TRACKER);
 			fireFreezeOverlay = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("fireFreeze", "position", "x"), cinqdt1Mod.newModConfig.getInteger("fireFreeze", "position", "y"), cinqdt1Mod.newModConfig.getFloat("fireFreeze", "position", "scale"), ItemUtils.getFireFreezeTexture(), 4,3, fireFreezeText, 0, FeatureButton.FIRE_FREEZE_OVERLAY);
 			firePillarOverlay = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("firePillar", "position", "x"), cinqdt1Mod.newModConfig.getInteger("firePillar", "position", "y"), cinqdt1Mod.newModConfig.getFloat("firePillar", "position", "scale"), ItemUtils.getFirePillarTexture(), 4, 3, firePillarText, 0, FeatureButton.FIRE_PILLAR_OVERLAY);
 			fragRunTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("fragRunTracker", "position", "scale"), null, 0, 0, fragRunText, 20, FeatureButton.FRAGRUN_TRACKER);
 			endermanPetTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("endermanPetTracker", "position", "scale"), null, 0, 0, endermanPetText, 20, FeatureButton.ENDERMAN_PET_TRACKER);
 			lowestHpSummonDisplay = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "x"), cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "y"), cinqdt1Mod.newModConfig.getFloat("lowestHpSummon", "position", "scale"), ItemUtils.getLowestSummonTexture(), 4, 3, lowestSummonText, 0, FeatureButton.LOWEST_HP_SUMMON_DISPLAY);
+			mythologicalHp = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("mythologicalHp", "position", "x"), cinqdt1Mod.newModConfig.getInteger("mythologicalHp", "position", "y"), cinqdt1Mod.newModConfig.getFloat("mythologicalHp", "position", "scale"), null, 0, 0, mythologicalText, 0, FeatureButton.MYTHOLOGICAL_HP);
 			scavengedStats = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "x"), cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "y"), cinqdt1Mod.newModConfig.getFloat("scavengedStats", "position", "scale"), ItemUtils.getScavengedStatsTexture(), 4, 3, scavengedStatsText, 0, FeatureButton.SCAVENGED_STATS);
 			xpRunTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("xpRunTracker", "position", "scale"), null,0 , 0, xpRuns, 20, FeatureButton.XP_RUN_TRACKER);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		batFireworkResize = new GuiFeatureButtonResizable(batFirework, FeatureButton.BAT_FIREWORK);
 		bobberTimerResize = new GuiFeatureButtonResizable(bobberTimer, FeatureButton.BOBBER_TIMER);
 		bundleTrackerResize = new GuiFeatureButtonResizable(bundleTracker, FeatureButton.BUNDLE_TRACKER);
 		fireFreezeOverlayResize = new GuiFeatureButtonResizable(fireFreezeOverlay, FeatureButton.FIRE_FREEZE_OVERLAY);
@@ -194,9 +183,11 @@ public class EditLocations extends GuiScreen{
 		fragRunTrackerResize = new GuiFeatureButtonResizable(fragRunTracker, FeatureButton.FRAGRUN_TRACKER);
 		endermanPetTrackerResize = new GuiFeatureButtonResizable(endermanPetTracker, FeatureButton.ENDERMAN_PET_TRACKER);
 		lowestHpSummonDisplayResize = new GuiFeatureButtonResizable(lowestHpSummonDisplay, FeatureButton.LOWEST_HP_SUMMON_DISPLAY);
+		mythologicalHpResize = new GuiFeatureButtonResizable(mythologicalHp, FeatureButton.MYTHOLOGICAL_HP);
 		scavengedStatsResize = new GuiFeatureButtonResizable(scavengedStats, FeatureButton.SCAVENGED_STATS);
 		xpRunTrackerResize = new GuiFeatureButtonResizable(xpRunTracker, FeatureButton.XP_RUN_TRACKER);
 
+		this.buttonList.add(batFirework);
         this.buttonList.add(bobberTimer);
 		this.buttonList.add(bundleTracker);
 		this.buttonList.add(fireFreezeOverlay);
@@ -204,9 +195,11 @@ public class EditLocations extends GuiScreen{
         this.buttonList.add(fragRunTracker);
         this.buttonList.add(endermanPetTracker);
         this.buttonList.add(lowestHpSummonDisplay);
+		this.buttonList.add(mythologicalHp);
 		this.buttonList.add(scavengedStats);
         this.buttonList.add(xpRunTracker);
 
+		this.buttonList.add(batFireworkResize);
 		this.buttonList.add(bobberTimerResize);
 		this.buttonList.add(bundleTrackerResize);
 		this.buttonList.add(fireFreezeOverlayResize);
@@ -214,16 +207,21 @@ public class EditLocations extends GuiScreen{
 		this.buttonList.add(fragRunTrackerResize);
 		this.buttonList.add(endermanPetTrackerResize);
 		this.buttonList.add(lowestHpSummonDisplayResize);
+		this.buttonList.add(mythologicalHpResize);
 		this.buttonList.add(scavengedStatsResize);
 		this.buttonList.add(xpRunTrackerResize);
 	}
-	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		this.drawDefaultBackground();
-		mouseMoved(mouseX, mouseY);
-		super.drawScreen(mouseX, mouseY, partialTicks);
 
-    }
+	public enum Action{
+		MOVE,
+		RESIZE,
+		NONE
+	}
+	
+	@Override
+	public boolean doesGuiPauseGame() {
+		return false;
+	}
 	
 	private void mouseMoved(int mouseX, int mouseY) {
 		try {
@@ -231,6 +229,12 @@ public class EditLocations extends GuiScreen{
 			double yMoved = RenderUtils.getUnscaledRatio((double)(mouseY - lastMouseY));
 			if(buttonAction == Action.RESIZE) {
 				switch (buttonPerformed) {
+					case BAT_FIREWORK:
+						float batFireworkScale = batFirework.getNewScaleWithX(xMoved);
+						if (batFireworkScale > 0.5f && batFireworkScale < 6.0f)
+							cinqdt1Mod.newModConfig.setFloat("bobberTimer", "position", "scale", batFireworkScale);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case BOBBER_TIMER:
 						float bobberTimerScale = bobberTimer.getNewScaleWithX(xMoved);
 						if (bobberTimerScale > 0.5f && bobberTimerScale < 6.0f)
@@ -273,6 +277,12 @@ public class EditLocations extends GuiScreen{
 							cinqdt1Mod.newModConfig.setFloat("lowestHpSummon", "position", "scale", lowestHpSummonScale);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
+					case MYTHOLOGICAL_HP:
+						float mythologicalHpScale = mythologicalHp.getNewScaleWithX(xMoved);
+						if (mythologicalHpScale > 0.5f && mythologicalHpScale < 6.0f)
+							cinqdt1Mod.newModConfig.setFloat("mythologicalHp", "position", "scale", mythologicalHpScale);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case SCAVENGED_STATS:
 						float scavengedStatsScale = scavengedStats.getNewScaleWithX(xMoved);
 						if (scavengedStatsScale > 0.5f && scavengedStatsScale < 6.0f)
@@ -290,6 +300,13 @@ public class EditLocations extends GuiScreen{
 				initGui();
 			}else if(buttonAction == Action.MOVE) {
 				switch (buttonPerformed) {
+					case BAT_FIREWORK:
+						double xValueBatFirework = cinqdt1Mod.newModConfig.getDouble("batFirework", "position", "x");
+						double yValueBatFirework = cinqdt1Mod.newModConfig.getDouble("batFirework", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("batFirework", "position", "x", xValueBatFirework + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("batFirework", "position", "y", yValueBatFirework + yMoved);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case BOBBER_TIMER:
 						double xValueBobberTimer = cinqdt1Mod.newModConfig.getDouble("bobberTimer", "position", "x");
 						double yValueBobberTimer = cinqdt1Mod.newModConfig.getDouble("bobberTimer", "position", "y");
@@ -339,6 +356,13 @@ public class EditLocations extends GuiScreen{
 						cinqdt1Mod.newModConfig.setDouble("lowestHpSummon", "position", "y", yValueLowestHpSummon + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
+					case MYTHOLOGICAL_HP:
+						double xValueMythologicalHp = cinqdt1Mod.newModConfig.getDouble("mythologicalHp", "position", "x");
+						double yValueMythologicalHp = cinqdt1Mod.newModConfig.getDouble("mythologicalHp", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("mythologicalHp", "position", "x", xValueMythologicalHp + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("mythologicalHp", "position", "y", yValueMythologicalHp + yMoved);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case SCAVENGED_STATS:
 						double xValueScavengedStats = cinqdt1Mod.newModConfig.getDouble("scavengedStats", "position", "x");
 						double yValueScavengedStats = cinqdt1Mod.newModConfig.getDouble("scavengedStats", "position", "y");
@@ -362,6 +386,28 @@ public class EditLocations extends GuiScreen{
 		}catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		this.drawDefaultBackground();
+		mouseMoved(mouseX, mouseY);
+		super.drawScreen(mouseX, mouseY, partialTicks);
+
+    }
+	
+	public enum FeatureButton{
+		BAT_FIREWORK,
+		BOBBER_TIMER,
+		BUNDLE_TRACKER,
+		FIRE_FREEZE_OVERLAY,
+		FIRE_PILLAR_OVERLAY,
+		FRAGRUN_TRACKER,
+		ENDERMAN_PET_TRACKER,
+		LOWEST_HP_SUMMON_DISPLAY,
+		MYTHOLOGICAL_HP,
+		SCAVENGED_STATS,
+		XP_RUN_TRACKER,
+		NONE
 	}
 	
 	@Override

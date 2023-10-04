@@ -152,6 +152,12 @@ public class ModConfig {
     }
 
     protected void defaultConfigHandler(JsonObject json){
+        addDouble(json, "batFirework", "position", "x", 0);
+        addDouble(json, "batFirework", "position", "y", 0);
+        addFloat(json, "batFirework", "position", "scale", 1.0f);
+        addInteger(json, "batFirework", "loot", "candy", 0);
+        addInteger(json, "batFirework", "loot", "fireworks_lauched", 0);
+
         addDouble(json, "bobberTimer", "position", "x", 0);
         addDouble(json, "bobberTimer", "position", "y", 0);
         addFloat(json, "bobberTimer", "position", "scale", 1.0f);
@@ -201,6 +207,10 @@ public class ModConfig {
         addDouble(json, "lowestHpSummon", "position", "x", 0);
         addDouble(json, "lowestHpSummon", "position", "y", 0);
         addFloat(json, "lowestHpSummon", "position", "scale", 1.0f);
+
+        addDouble(json, "mythologicalHp", "position", "x", 0);
+        addDouble(json, "mythologicalHp", "position", "y", 0);
+        addFloat(json, "mythologicalHp", "position", "scale", 1.0f);
 
         addDouble(json, "scavengedStats", "position", "x", 0);
         addDouble(json, "scavengedStats", "position", "y", 0);

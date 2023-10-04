@@ -1,21 +1,16 @@
 package cinqdt1.Mod.config;
 
 import cinqdt1.Mod.cinqdt1Mod;
+import cinqdt1.Mod.gui.EditLocations;
 import gg.essential.vigilance.Vigilant;
-import gg.essential.vigilance.data.Category;
-import gg.essential.vigilance.data.JVMAnnotationPropertyCollector;
-import gg.essential.vigilance.data.Property;
-import gg.essential.vigilance.data.PropertyType;
-import gg.essential.vigilance.data.SortingBehavior;
+import gg.essential.vigilance.data.*;
 import kotlin.comparisons.ComparisonsKt;
 import kotlin.jvm.internal.Intrinsics;
 import net.minecraft.client.Minecraft;
-import cinqdt1.Mod.gui.EditLocations;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.Comparator;
-
-import org.jetbrains.annotations.NotNull;
 
 public class ModConfiguration extends Vigilant {
 	@Property(
@@ -285,6 +280,33 @@ public class ModConfiguration extends Vigilant {
 			subcategory = "Inferno Demonlord"
 	)
 	public static boolean firePillarOverlayState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Mythological HP",
+			description = "Show an overlay who show the hp left on your mythological creature",
+			category = "Mythological",
+			subcategory = "Info"
+	)
+	public static boolean hpMythologicalState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Colored Chat",
+			description = "You can now includes colors in your chat messages and others players with this mod can see it",
+			category = "Chat",
+			subcategory = "Better Chat"
+	)
+	public static boolean enhancedChatColor = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Bat Firework Stats",
+			description = "Display stats about bat firework you launched so far",
+			category = "Misc",
+			subcategory = "Bat Firework"
+	)
+	public static boolean batFireworkStatsState = false;
 
 	public ModConfiguration() {
         super(new File("./config/5dt1's Mod.toml"), "5dt1's Mod", new JVMAnnotationPropertyCollector(), ConfigSorting.INSTANCE );
