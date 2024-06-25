@@ -1,0 +1,8 @@
+{
+  "package": "com.cinqdt1.Mod.mixins",
+  "refmap": "mixins.enhancedskyblockmod.refmap.json",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinGuiContainer"
+  ]
+}
