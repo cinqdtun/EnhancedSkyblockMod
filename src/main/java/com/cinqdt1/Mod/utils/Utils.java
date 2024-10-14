@@ -1,5 +1,6 @@
 package com.cinqdt1.Mod.utils;
 
+import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.handlers.ScoreboardHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -545,5 +546,9 @@ public class Utils {
 		if(decimal <= 0) return value;
 		int factor = 2 * (int)Math.pow(10, decimal - 1);
 		return Math.floor(value * factor) / factor;
+	}
+
+	public static void showTitle(String title, String subtitle) {
+		cinqdt1Mod.displayTitle(title, subtitle);
 	}
 }

@@ -29,7 +29,7 @@ public class ScavengedStats {
         tickElapsed++;
         if(tickElapsed % 20 != 0) return;
         try {
-            cinqdt1Mod.newModConfig.setInteger("scavengedStats", "stats", "time", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "stats", "time") + 1);
+            cinqdt1Mod.newModConfig.setInteger("scathaCoolodwn", "stats", "time", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "stats", "time") + 1);
             cinqdt1Mod.newModConfig.saveConfig();
             tickElapsed = 0;
         }catch (Exception e){

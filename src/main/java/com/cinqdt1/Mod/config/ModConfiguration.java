@@ -134,6 +134,24 @@ public class ModConfiguration extends Vigilant {
 			subcategory = "Divan"
 	)
 	public static boolean scavengedStatsTrackState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Scatha alert",
+			description = "Show an alert when a worm or scatha is spawned",
+			category = "Crystal Hollow",
+			subcategory = "Scatha Mining"
+	)
+	public static boolean scathaAlert = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Scatha Cooldown",
+			description = "Show cooldown of scatha spawn",
+			category = "Crystal Hollow",
+			subcategory = "Scatha Mining"
+	)
+	public static boolean scathaCooldown = false;
 	@Property(
 			type = PropertyType.SWITCH,
 			name = "Fire Freeze Countdown",
@@ -168,6 +186,15 @@ public class ModConfiguration extends Vigilant {
 			subcategory = "Info"
 	)
 	public static boolean hpMythologicalState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Last Inquisitor",
+			description = "Display a timer who show time since last inquisitor spawn by you",
+			category = "Mythological",
+			subcategory = "Info"
+	)
+	public static boolean lastInquiState = false;
 	@Property(
 			type = PropertyType.SWITCH,
 			name = "Colored Chat",

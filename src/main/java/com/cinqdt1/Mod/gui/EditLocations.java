@@ -31,8 +31,10 @@ public class EditLocations extends GuiScreen{
 	private GuiFeatureButton fragRunTracker;
 	private GuiFeatureButton endermanPetTracker;
 	private GuiFeatureButton lowestHpSummonDisplay;
+	private GuiFeatureButton mythologicalLastInquiDisplay;
 	private GuiFeatureButton mythologicalHp;
 	private GuiFeatureButton scavengedStats;
+	private GuiFeatureButton scathaCooldown;
 	private GuiFeatureButton xpRunTracker;
 
 	private GuiFeatureButtonResizable ashfangHpResize;
@@ -44,8 +46,10 @@ public class EditLocations extends GuiScreen{
 	private GuiFeatureButtonResizable fragRunTrackerResize;
 	private GuiFeatureButtonResizable endermanPetTrackerResize;
 	private GuiFeatureButtonResizable lowestHpSummonDisplayResize;
+	private GuiFeatureButtonResizable mythologicalLastInquiResize;
 	private GuiFeatureButtonResizable mythologicalHpResize;
 	private GuiFeatureButtonResizable scavengedStatsResize;
+	private GuiFeatureButtonResizable scathaCooldownResize;
 	private GuiFeatureButtonResizable xpRunTrackerResize;
 
 	@Override
@@ -61,8 +65,10 @@ public class EditLocations extends GuiScreen{
 		List<String> fragRunText = new ArrayList<>();
 		List<String> endermanPetText = new ArrayList<>();
 		List<String> lowestSummonText = new ArrayList<>();
+		List<String> mythologicalLastInquiText = new ArrayList<>();
 		List<String> mythologicalText = new ArrayList<>();
 		List<String> scavengedStatsText = new ArrayList<>();
+		List<String> scathaCooldownText = new ArrayList<>();
 		List<String> xpRuns = new ArrayList<>();
 
 		ashfangHpText.add(EnumChatFormatting.YELLOW + "﴾ " + EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.GRAY + "Lv200" + EnumChatFormatting.DARK_GRAY + "]" + EnumChatFormatting.DARK_GRAY + " Ashfang" + EnumChatFormatting.YELLOW + " 35M" + EnumChatFormatting.WHITE + "/" + EnumChatFormatting.GREEN + "50M" + EnumChatFormatting.RED + "❤" + EnumChatFormatting.YELLOW + " ﴿");
@@ -150,10 +156,15 @@ public class EditLocations extends GuiScreen{
 		lowestSummonText.add(EnumChatFormatting.GREEN + "Tank Zombie\n" +
 				EnumChatFormatting.RED + "126k");
 
+		mythologicalLastInquiText.add(EnumChatFormatting.RED + "20m 33s");
+
 		mythologicalText.add(EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.GRAY + "Lv260" + EnumChatFormatting.DARK_GRAY + "]" + EnumChatFormatting.DARK_GREEN + " Exalted Gaia Construct" + EnumChatFormatting.YELLOW + " 876k" + EnumChatFormatting.WHITE + "/" + EnumChatFormatting.GREEN + "1.5M" + EnumChatFormatting.RED + "❤");
+
 
 		scavengedStatsText.add(EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + "Scavenged Stats\n" +
 				"Avg time per pair: 3m 40s");
+
+		scathaCooldownText.add(EnumChatFormatting.RED + "19.5s");
 
 		xpRuns.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.BOLD + "Xp Runs\n" +
 				EnumChatFormatting.GRAY + "Current pet:\n" +
@@ -174,8 +185,10 @@ public class EditLocations extends GuiScreen{
 			fragRunTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("fragRunTracker", "position", "scale"), null, 0, 0, fragRunText, 20, FeatureButton.FRAGRUN_TRACKER);
 			endermanPetTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("endermanPetTracker", "position", "scale"), null, 0, 0, endermanPetText, 20, FeatureButton.ENDERMAN_PET_TRACKER);
 			lowestHpSummonDisplay = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "x"), cinqdt1Mod.newModConfig.getInteger("lowestHpSummon", "position", "y"), cinqdt1Mod.newModConfig.getFloat("lowestHpSummon", "position", "scale"), ItemUtils.getLowestSummonTexture(), 4, 3, lowestSummonText, 0, FeatureButton.LOWEST_HP_SUMMON_DISPLAY);
+			mythologicalLastInquiDisplay = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("mythologicalLastInqui", "position", "x"), cinqdt1Mod.newModConfig.getInteger("mythologicalLastInqui", "position", "y"), cinqdt1Mod.newModConfig.getFloat("mythologicalLastInqui", "position", "scale"), ItemUtils.getInquiHeadTexture(), 4, 3, mythologicalLastInquiText, 0, FeatureButton.MYTHOLOGICAL_LAST_INQUI);
 			mythologicalHp = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("mythologicalHp", "position", "x"), cinqdt1Mod.newModConfig.getInteger("mythologicalHp", "position", "y"), cinqdt1Mod.newModConfig.getFloat("mythologicalHp", "position", "scale"), null, 0, 0, mythologicalText, 0, FeatureButton.MYTHOLOGICAL_HP);
 			scavengedStats = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "x"), cinqdt1Mod.newModConfig.getInteger("scavengedStats", "position", "y"), cinqdt1Mod.newModConfig.getFloat("scavengedStats", "position", "scale"), ItemUtils.getScavengedStatsTexture(), 4, 3, scavengedStatsText, 0, FeatureButton.SCAVENGED_STATS);
+			scathaCooldown = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("scathaCoolodwn", "position", "x"), cinqdt1Mod.newModConfig.getInteger("scathaCoolodwn", "position", "y"), cinqdt1Mod.newModConfig.getFloat("scathaCoolodwn", "position", "scale"), null, 0, 0, scathaCooldownText, 0, FeatureButton.SCATHA_COOLDOWN);
 			xpRunTracker = new GuiFeatureButton(cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "x"), cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "position", "y"), cinqdt1Mod.newModConfig.getFloat("xpRunTracker", "position", "scale"), null,0 , 0, xpRuns, 20, FeatureButton.XP_RUN_TRACKER);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -190,8 +203,10 @@ public class EditLocations extends GuiScreen{
 		fragRunTrackerResize = new GuiFeatureButtonResizable(fragRunTracker, FeatureButton.FRAGRUN_TRACKER);
 		endermanPetTrackerResize = new GuiFeatureButtonResizable(endermanPetTracker, FeatureButton.ENDERMAN_PET_TRACKER);
 		lowestHpSummonDisplayResize = new GuiFeatureButtonResizable(lowestHpSummonDisplay, FeatureButton.LOWEST_HP_SUMMON_DISPLAY);
+		mythologicalLastInquiResize = new GuiFeatureButtonResizable(mythologicalLastInquiDisplay, FeatureButton.MYTHOLOGICAL_LAST_INQUI);
 		mythologicalHpResize = new GuiFeatureButtonResizable(mythologicalHp, FeatureButton.MYTHOLOGICAL_HP);
 		scavengedStatsResize = new GuiFeatureButtonResizable(scavengedStats, FeatureButton.SCAVENGED_STATS);
+		scathaCooldownResize = new GuiFeatureButtonResizable(scathaCooldown, FeatureButton.SCATHA_COOLDOWN);
 		xpRunTrackerResize = new GuiFeatureButtonResizable(xpRunTracker, FeatureButton.XP_RUN_TRACKER);
 
 		this.buttonList.add(ashfangHp);
@@ -203,8 +218,10 @@ public class EditLocations extends GuiScreen{
         this.buttonList.add(fragRunTracker);
         this.buttonList.add(endermanPetTracker);
         this.buttonList.add(lowestHpSummonDisplay);
+		this.buttonList.add(mythologicalLastInquiDisplay);
 		this.buttonList.add(mythologicalHp);
 		this.buttonList.add(scavengedStats);
+		this.buttonList.add(scathaCooldown);
         this.buttonList.add(xpRunTracker);
 
 		this.buttonList.add(ashfangHpResize);
@@ -216,8 +233,10 @@ public class EditLocations extends GuiScreen{
 		this.buttonList.add(fragRunTrackerResize);
 		this.buttonList.add(endermanPetTrackerResize);
 		this.buttonList.add(lowestHpSummonDisplayResize);
+		this.buttonList.add(mythologicalLastInquiResize);
 		this.buttonList.add(mythologicalHpResize);
 		this.buttonList.add(scavengedStatsResize);
+		this.buttonList.add(scathaCooldownResize);
 		this.buttonList.add(xpRunTrackerResize);
 	}
 
@@ -241,7 +260,7 @@ public class EditLocations extends GuiScreen{
 					case BAT_FIREWORK:
 						float batFireworkScale = batFirework.getNewScaleWithX(xMoved);
 						if (batFireworkScale > 0.5f && batFireworkScale < 6.0f)
-							cinqdt1Mod.newModConfig.setFloat("bobberTimer", "position", "scale", batFireworkScale);
+							cinqdt1Mod.newModConfig.setFloat("batFirework", "position", "scale", batFireworkScale);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case BOBBER_TIMER:
@@ -286,6 +305,12 @@ public class EditLocations extends GuiScreen{
 							cinqdt1Mod.newModConfig.setFloat("lowestHpSummon", "position", "scale", lowestHpSummonScale);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
+					case MYTHOLOGICAL_LAST_INQUI:
+						float mythologicalLastInquiScale = mythologicalLastInquiDisplay.getNewScaleWithX(xMoved);
+						if (mythologicalLastInquiScale > 0.5f && mythologicalLastInquiScale < 6.0f)
+							cinqdt1Mod.newModConfig.setFloat("mythologicalLastInqui", "position", "scale", mythologicalLastInquiScale);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case MYTHOLOGICAL_HP:
 						float mythologicalHpScale = mythologicalHp.getNewScaleWithX(xMoved);
 						if (mythologicalHpScale > 0.5f && mythologicalHpScale < 6.0f)
@@ -296,6 +321,12 @@ public class EditLocations extends GuiScreen{
 						float scavengedStatsScale = scavengedStats.getNewScaleWithX(xMoved);
 						if (scavengedStatsScale > 0.5f && scavengedStatsScale < 6.0f)
 							cinqdt1Mod.newModConfig.setFloat("scavengedStats", "position", "scale", scavengedStatsScale);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
+					case SCATHA_COOLDOWN:
+						float scathaCooldownScale = scathaCooldown.getNewScaleWithX(xMoved);
+						if (scathaCooldownScale > 0.5f && scathaCooldownScale < 6.0f)
+							cinqdt1Mod.newModConfig.setFloat("scathaCoolodwn", "position", "scale", scathaCooldownScale);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case XP_RUN_TRACKER:
@@ -372,6 +403,13 @@ public class EditLocations extends GuiScreen{
 						cinqdt1Mod.newModConfig.setDouble("lowestHpSummon", "position", "y", yValueLowestHpSummon + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
+					case MYTHOLOGICAL_LAST_INQUI:
+						double xValueMythologicalLastInqui = cinqdt1Mod.newModConfig.getDouble("mythologicalLastInqui", "position", "x");
+						double yValueMythologicalLastInqui = cinqdt1Mod.newModConfig.getDouble("mythologicalLastInqui", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("mythologicalLastInqui", "position", "x", xValueMythologicalLastInqui + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("mythologicalLastInqui", "position", "y", yValueMythologicalLastInqui + yMoved);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
 					case MYTHOLOGICAL_HP:
 						double xValueMythologicalHp = cinqdt1Mod.newModConfig.getDouble("mythologicalHp", "position", "x");
 						double yValueMythologicalHp = cinqdt1Mod.newModConfig.getDouble("mythologicalHp", "position", "y");
@@ -384,6 +422,13 @@ public class EditLocations extends GuiScreen{
 						double yValueScavengedStats = cinqdt1Mod.newModConfig.getDouble("scavengedStats", "position", "y");
 						cinqdt1Mod.newModConfig.setDouble("scavengedStats", "position", "x", xValueScavengedStats + xMoved);
 						cinqdt1Mod.newModConfig.setDouble("scavengedStats", "position", "y", yValueScavengedStats + yMoved);
+						cinqdt1Mod.newModConfig.saveConfig();
+						break;
+					case SCATHA_COOLDOWN:
+						double xValueScathaCooldown = cinqdt1Mod.newModConfig.getDouble("scathaCoolodwn", "position", "x");
+						double yValueScathaCooldown = cinqdt1Mod.newModConfig.getDouble("scathaCoolodwn", "position", "y");
+						cinqdt1Mod.newModConfig.setDouble("scathaCoolodwn", "position", "x", xValueScathaCooldown + xMoved);
+						cinqdt1Mod.newModConfig.setDouble("scathaCoolodwn", "position", "y", yValueScathaCooldown + yMoved);
 						cinqdt1Mod.newModConfig.saveConfig();
 						break;
 					case XP_RUN_TRACKER:
@@ -452,8 +497,10 @@ public class EditLocations extends GuiScreen{
 		FRAGRUN_TRACKER,
 		ENDERMAN_PET_TRACKER,
 		LOWEST_HP_SUMMON_DISPLAY,
+		MYTHOLOGICAL_LAST_INQUI,
 		MYTHOLOGICAL_HP,
 		SCAVENGED_STATS,
+		SCATHA_COOLDOWN,
 		XP_RUN_TRACKER,
 		NONE
 	}

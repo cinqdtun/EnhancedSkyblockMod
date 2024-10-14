@@ -212,9 +212,18 @@ public class ModConfig {
         addDouble(json, "lowestHpSummon", "position", "y", 0);
         addFloat(json, "lowestHpSummon", "position", "scale", 1.0f);
 
+        addDouble(json, "mythologicalLastInqui", "position", "x", 0);
+        addDouble(json, "mythologicalLastInqui", "position", "y", 0);
+        addFloat(json, "mythologicalLastInqui", "position", "scale", 1.0f);
+        addInteger(json, "mythologicalLastInqui", "stats", "lastInqui", 0);
+
         addDouble(json, "mythologicalHp", "position", "x", 0);
         addDouble(json, "mythologicalHp", "position", "y", 0);
         addFloat(json, "mythologicalHp", "position", "scale", 1.0f);
+
+        addDouble(json, "scathaCoolodwn", "position", "x", 0);
+        addDouble(json, "scathaCoolodwn", "position", "y", 0);
+        addFloat(json, "scathaCoolodwn", "position", "scale", 1.0f);
 
         addDouble(json, "scavengedStats", "position", "x", 0);
         addDouble(json, "scavengedStats", "position", "y", 0);

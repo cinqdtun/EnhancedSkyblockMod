@@ -9,8 +9,10 @@ import com.cinqdt1.Mod.features.*;
 import com.cinqdt1.Mod.features.dojohelper.DisciplineHelper;
 import com.cinqdt1.Mod.utils.DisplayTitle;
 import gg.essential.vigilance.Vigilance;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.client.ClientCommandHandler;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -18,6 +20,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.lwjgl.input.Keyboard;
 
 import java.io.File;
@@ -29,14 +32,34 @@ public class cinqdt1Mod {
     public static final String MOD_ID = "enhancedskyblockmod";
     public static final String VERSION = "1.0.0";
     public static final boolean devMode = true;
-    public static KeyBinding[] keyBindings = new KeyBinding[2];
+    public static KeyBinding[] keyBindings = new KeyBinding[3];
     public ModConfiguration config = new ModConfiguration();
+
+    private static boolean shouldShowTitle = false;
+    private static String[] titleInfos = new String[2];
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ClientCommandHandler.instance.registerCommand(new MainCommand());
 		ClientCommandHandler.instance.registerCommand(new NotCountRun());
 	}
+
+    public static void displayTitle(String title, String subtitle){
+        titleInfos[0] = title;
+        titleInfos[1] = subtitle;
+        shouldShowTitle = true;
+    }
+
+	@EventHandler
+	public void PostInit(FMLPostInitializationEvent event) {
+
+	}
+    /*
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onTick(TickEvent.ClientTickEvent event) {
+		if (event.phase != Phase.START) return;
+	}
+     */
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
@@ -62,33 +85,36 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new XpRunTracker());
         MinecraftForge.EVENT_BUS.register(new FragRunTracker());
         MinecraftForge.EVENT_BUS.register(new HighlightChestDungeons());
-        MinecraftForge.EVENT_BUS.register(new MythologicalHp());
+        MinecraftForge.EVENT_BUS.register(new MythologicalFeatures());
         MinecraftForge.EVENT_BUS.register(new SummonsFeatures());
         MinecraftForge.EVENT_BUS.register(new ScavengedStats());
         MinecraftForge.EVENT_BUS.register(new TransferCooldownHelper());
+        MinecraftForge.EVENT_BUS.register(new ScathaMining());
+
         if(devMode){
             MinecraftForge.EVENT_BUS.register(new DevFeatures());
         }
 
         keyBindings[0] = new KeyBinding("Open Settings", Keyboard.KEY_C, "5dt1's Mod");
+        keyBindings[2] = new KeyBinding("Copy chat key", Keyboard.KEY_P, "5dt1's Mod");
         if (devMode){
             keyBindings[1] = new KeyBinding("Debug key", Keyboard.KEY_NONE, "5dt1's Mod");
         }
-        
+
         for (KeyBinding keyBinding : keyBindings) {
             if(keyBinding == null) continue;
             ClientRegistry.registerKeyBinding(keyBinding);
         }
 	}
 
-	@EventHandler
-	public void PostInit(FMLPostInitializationEvent event) {
-
-	}
-    /*
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void onTick(TickEvent.ClientTickEvent event) {
-		if (event.phase != Phase.START) return;
-	}
-     */
+    @SubscribeEvent
+    public void onRenderGameOverlay(RenderGameOverlayEvent.Post event) {
+        if (event.type == RenderGameOverlayEvent.ElementType.ALL) {
+            // Check conditions for showing the title
+            if (shouldShowTitle) {
+                shouldShowTitle = false;
+                Minecraft.getMinecraft().ingameGUI.displayTitle(titleInfos[0], titleInfos[1], 5, 50,5);
+            }
+        }
+    }
 }
