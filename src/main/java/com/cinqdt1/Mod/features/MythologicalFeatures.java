@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.ItemUtils;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -21,7 +23,18 @@ public class MythologicalFeatures {
 
     public MythologicalMob digMob = MythologicalMob.EMPTY;
 
-
+    @SubscribeEvent
+    public void onInit(InitEvent event)
+    {
+        List<String> guiText = new ArrayList<>();
+        guiText.add(EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.GRAY + "Lv260" + EnumChatFormatting.DARK_GRAY + "]" + EnumChatFormatting.DARK_GREEN + " Exalted Gaia Construct" + EnumChatFormatting.YELLOW + " 876k" + EnumChatFormatting.WHITE + "/" + EnumChatFormatting.GREEN + "1.5M" + EnumChatFormatting.RED + "❤");
+        GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 0, "mythologicalHp", guiText, null);
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+        guiText.clear();
+        guiText.add(EnumChatFormatting.RED + "20m 33s");
+        guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 4, 3, 0, "mythologicalLastInqui", guiText, ItemUtils.getInquiHeadTexture());
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+    }
     @SubscribeEvent
     public void onRenderMythoHp(RenderOverlay event){
         if(!Utils.inSkyblock) return;

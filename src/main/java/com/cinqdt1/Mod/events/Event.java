@@ -1,7 +1,7 @@
 package com.cinqdt1.Mod.events;
 
 import com.cinqdt1.Mod.core.handlers.PacketHandler;
-import com.cinqdt1.Mod.gui.EditLocations;
+import com.cinqdt1.Mod.gui.GuiEdit;
 import com.cinqdt1.Mod.utils.Utils;
 import gg.essential.vigilance.gui.SettingsGui;
 import net.minecraft.client.Minecraft;
@@ -82,7 +82,7 @@ public class Event {
 		 if (!(Minecraft.getMinecraft().ingameGUI instanceof GuiIngameForge)) return;
 		 if (event.type != RenderGameOverlayEvent.ElementType.EXPERIENCE && event.type != RenderGameOverlayEvent.ElementType.JUMPBAR) return;
 	     if (Minecraft.getMinecraft().currentScreen instanceof SettingsGui) return;
-	     if (Minecraft.getMinecraft().currentScreen instanceof EditLocations) return;
+	     if (Minecraft.getMinecraft().currentScreen instanceof GuiEdit) return;
 	     MinecraftForge.EVENT_BUS.post(new RenderOverlay());
 	 }
 

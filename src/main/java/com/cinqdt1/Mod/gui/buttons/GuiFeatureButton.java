@@ -1,6 +1,5 @@
 package com.cinqdt1.Mod.gui.buttons;
 
-import com.cinqdt1.Mod.gui.EditLocations;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GuiFeatureButton extends GuiButton {
-	public final EditLocations.FeatureButton feature;
+	/*public final EditLocations.FeatureButton feature;*/
+	public final int id;
 	private final ItemStack renderItem;
 	private final int tWidth;
 	private final int xTextOffset;
@@ -27,7 +27,7 @@ public class GuiFeatureButton extends GuiButton {
 	protected float scale;
 	private int baseWidth;
 
-	public GuiFeatureButton(int x, int y, float scale, @Nullable ItemStack renderItem, int xTextOffset, int yTextOffset, @NotNull List<String> text, int linesOffset, EditLocations.FeatureButton feature) {
+	public GuiFeatureButton(int x, int y, float scale, @Nullable ItemStack renderItem, int xTextOffset, int yTextOffset, @NotNull List<String> text, int linesOffset, /*EditLocations.FeatureButton feature*/ int id) {
 		super(0, RenderUtils.getScaledRatio(x), RenderUtils.getScaledRatio(y), text.get(0));
 		this.scale = scale;
 		this.renderItem = renderItem;
@@ -41,7 +41,8 @@ public class GuiFeatureButton extends GuiButton {
 		this.baseWidth = 0;
 		this.height = 0;
 		this.width = 0;
-		this.feature = feature;
+		/*this.feature = feature;*/
+		this.id = id;
 
 		float highestLine = 0;
 		int i = 1;

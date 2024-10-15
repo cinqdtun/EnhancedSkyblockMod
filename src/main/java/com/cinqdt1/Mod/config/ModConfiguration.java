@@ -1,7 +1,6 @@
 package com.cinqdt1.Mod.config;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
-import com.cinqdt1.Mod.gui.EditLocations;
 import gg.essential.vigilance.Vigilant;
 import gg.essential.vigilance.data.*;
 import kotlin.comparisons.ComparisonsKt;
@@ -255,7 +254,7 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void openLocationGui() {
 
-		 Minecraft.getMinecraft().displayGuiScreen(new EditLocations());
+		 Minecraft.getMinecraft().displayGuiScreen(cinqdt1Mod.guiEdit);
 	}
 
 	@Property(

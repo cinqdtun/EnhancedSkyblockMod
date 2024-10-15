@@ -5,8 +5,10 @@ import com.cinqdt1.Mod.commands.NotCountRun;
 import com.cinqdt1.Mod.config.ModConfig;
 import com.cinqdt1.Mod.config.ModConfiguration;
 import com.cinqdt1.Mod.events.Event;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.features.*;
 import com.cinqdt1.Mod.features.dojohelper.DisciplineHelper;
+import com.cinqdt1.Mod.gui.GuiEdit;
 import com.cinqdt1.Mod.utils.DisplayTitle;
 import gg.essential.vigilance.Vigilance;
 import net.minecraft.client.Minecraft;
@@ -28,6 +30,7 @@ import java.io.File;
 @Mod(modid = cinqdt1Mod.MOD_ID, version = cinqdt1Mod.VERSION, clientSideOnly = true, acceptedMinecraftVersions = "[1.8.9]")
 public class cinqdt1Mod {
     public static final cinqdt1Mod instance = new cinqdt1Mod();
+    public static final GuiEdit guiEdit = new GuiEdit();
     public static final ModConfig newModConfig = new ModConfig(new File("./config/cinqdtun.cfg"));
     public static final String MOD_ID = "enhancedskyblockmod";
     public static final String VERSION = "1.0.0";
@@ -105,6 +108,8 @@ public class cinqdt1Mod {
             if(keyBinding == null) continue;
             ClientRegistry.registerKeyBinding(keyBinding);
         }
+
+        MinecraftForge.EVENT_BUS.post(new InitEvent());
 	}
 
     @SubscribeEvent

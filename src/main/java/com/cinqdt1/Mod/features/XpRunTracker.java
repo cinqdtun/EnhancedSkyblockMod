@@ -3,7 +3,9 @@ package com.cinqdt1.Mod.features;
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
 import com.cinqdt1.Mod.events.DungeonEvent;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.ApiUtils;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -25,7 +27,20 @@ public class XpRunTracker {
 	private int petXpStart = 0;
 	private int totalPetXp = 0;
 	private PetType petType = PetType.LVL100;
-
+	public void onInit(InitEvent event)
+	{
+		List<String> guiText = new ArrayList<>();
+		guiText.add(EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.BOLD + "Xp Runs\n" +
+				EnumChatFormatting.GRAY + "Current pet:\n" +
+				EnumChatFormatting.GRAY + "Average xp/run:\n" +
+				EnumChatFormatting.GRAY + "Runs needed to lvl max:");
+		guiText.add(EnumChatFormatting.DARK_GRAY + "\n" +
+				EnumChatFormatting.GRAY + "Ender Dragon\n" +
+				EnumChatFormatting.GRAY + "169 456\n" +
+				EnumChatFormatting.GRAY + "98");
+		GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 20, "xpRunTracker", guiText, null);
+		cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+	}
 	@SubscribeEvent
 	public void onExitDungeon(DungeonEvent.Leave event) {
 		if(event.floor != 6) return;

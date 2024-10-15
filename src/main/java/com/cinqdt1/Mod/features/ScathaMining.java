@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -20,8 +22,15 @@ import java.util.List;
 public class ScathaMining {
     private boolean isScathaSpawned = false;
     private SCATHA_TYPE scathaType = SCATHA_TYPE.UNKNOWN;
-
     private long scathaSpawnTime = 0;
+    @SubscribeEvent
+    public void onInit(InitEvent event)
+    {
+        List<String> guiText = new ArrayList<>();
+        guiText.add(EnumChatFormatting.RED + "19.5s");
+        GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 0, "scathaCoolodwn", guiText, null);
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+    }
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChat(ClientChatReceivedEvent event) {
         String message = StringUtils.stripControlCodes(event.message.getUnformattedText());

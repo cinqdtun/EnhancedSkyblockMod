@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -30,7 +32,43 @@ public class FragRunTracker {
 	private static GiantState giantState = GiantState.DEAD;
 	private static BloodState bloodState = BloodState.CLOSED;
 	private final int jollyPinkArmorColor = 16716947;
-
+	@SubscribeEvent
+	public void onInit(InitEvent event)
+	{
+		List<String> guiText = new ArrayList<>();
+		guiText.add(EnumChatFormatting.GREEN + "" + EnumChatFormatting.BOLD +"Giants\n" +
+				EnumChatFormatting.DARK_GREEN + "Diamante's:\n" +
+				EnumChatFormatting.DARK_GREEN + "L.A.S.R.'s:\n" +
+				EnumChatFormatting.DARK_GREEN + "Bigfoot's:\n" +
+				EnumChatFormatting.DARK_GREEN + "Jolly Pink:\n" +
+				EnumChatFormatting.GREEN + "" + EnumChatFormatting.BOLD + "Giants Drops\n" +
+				EnumChatFormatting.DARK_GREEN + "Diamante's Handles:\n" +
+				EnumChatFormatting.DARK_GREEN + "L.A.S.R.'s Eyes:\n" +
+				EnumChatFormatting.DARK_GREEN + "Bigfoot's Lassos:\n" +
+				EnumChatFormatting.DARK_GREEN + "Jolly Pink Rocks:");
+		guiText.add(EnumChatFormatting.GREEN + "\n" +
+				EnumChatFormatting.DARK_GREEN + "5\n" +
+				EnumChatFormatting.DARK_GREEN + "3\n" +
+				EnumChatFormatting.DARK_GREEN + "4\n" +
+				EnumChatFormatting.DARK_GREEN + "2\n" +
+				EnumChatFormatting.GREEN + "\n" +
+				EnumChatFormatting.DARK_GREEN + "4\n" +
+				EnumChatFormatting.DARK_GREEN + "2\n" +
+				EnumChatFormatting.DARK_GREEN + "3\n" +
+				EnumChatFormatting.DARK_GREEN + "2");
+		guiText.add("\n" +
+				EnumChatFormatting.YELLOW  + "35%\n" +
+				EnumChatFormatting.YELLOW  + "21%\n" +
+				EnumChatFormatting.YELLOW  + "28%\n" +
+				EnumChatFormatting.YELLOW  + "14%\n" +
+				"\n" +
+				EnumChatFormatting.YELLOW  + "80%\n" +
+				EnumChatFormatting.YELLOW  + "66%\n" +
+				EnumChatFormatting.YELLOW  + "75%\n" +
+				EnumChatFormatting.YELLOW  + "100%");
+		GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 20, "fragRunTracker", guiText, null);
+		cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+	}
 	@SubscribeEvent
 	public void onTick(TickEvent.ClientTickEvent event) {
 		if(event.phase != TickEvent.Phase.START) return;

@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
@@ -29,7 +31,37 @@ public class BundleTracker {
     private final Pattern divanFragmentPattern = Pattern.compile("Divan Fragment\\s?x?(\\d{0,2})");
     private final List<UUID> countedUUIDS = new ArrayList<>();
     private final Minecraft mc = Minecraft.getMinecraft();
-
+    @SubscribeEvent
+    public void onInit(InitEvent event)
+    {
+        List<String> guiText = new ArrayList<>();
+        guiText.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.BOLD + "Crystal Loot Bundle\n" +
+                EnumChatFormatting.GOLD + "Bob-omb :\n" +
+                EnumChatFormatting.GOLD + "Pickonimbus 2000:\n" +
+                EnumChatFormatting.GOLD + "Prehistoric Egg:\n" +
+                EnumChatFormatting.GOLD + "Divan's Fragment:\n" +
+                EnumChatFormatting.GOLD + "Recall Potion:\n" +
+                EnumChatFormatting.GOLD + "Jaderald:\n" +
+                EnumChatFormatting.GOLD + "Divan's Alloy:\n" +
+                EnumChatFormatting.GOLD + "Fortune IV:\n" +
+                EnumChatFormatting.GOLD + "Quick Claw:\n" +
+                EnumChatFormatting.GOLD + "Gemstone Mixture:\n" +
+                EnumChatFormatting.GOLD + "Bundle Runs:");
+        guiText.add("\n" +
+                EnumChatFormatting.GOLD + "96\n" +
+                EnumChatFormatting.GOLD + "4\n" +
+                EnumChatFormatting.GOLD + "5\n" +
+                EnumChatFormatting.GOLD + "2\n" +
+                EnumChatFormatting.GOLD + "0\n" +
+                EnumChatFormatting.GOLD + "1\n" +
+                EnumChatFormatting.GOLD + "0\n" +
+                EnumChatFormatting.GOLD + "1\n" +
+                EnumChatFormatting.GOLD + "0\n" +
+                EnumChatFormatting.GOLD + "0\n" +
+                EnumChatFormatting.GOLD + "8");
+        GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 0, "bundleTracker", guiText, null);
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+    }
     //TODO : Change event to an event not related to render
     @SubscribeEvent
     public void onBeforeRenderEntity(RenderLivingEvent.Pre<EntityLivingBase> event) {

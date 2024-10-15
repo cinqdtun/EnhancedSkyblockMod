@@ -3,7 +3,9 @@ package com.cinqdt1.Mod.features;
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
 import com.cinqdt1.Mod.events.FishingEvent;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.init.Items;
@@ -17,7 +19,14 @@ import java.util.List;
 public class BobberTimer {
 	public boolean isPlayerFishing = false;
 	public int startTimeFishing = 0;
-	
+	@SubscribeEvent
+	public void onInit(InitEvent event)
+	{
+		List<String> guiText = new ArrayList<>();
+		guiText.add(EnumChatFormatting.RED  + Utils.getTimeBetween(0, 3));
+		GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 4, 3, 20, "bobberTimer", guiText, new ItemStack(Items.fishing_rod));
+		cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+	}
 	@SubscribeEvent
 	public void startFishing(FishingEvent.Start event) {
 		if(!Utils.inCrimsonIsle) return;

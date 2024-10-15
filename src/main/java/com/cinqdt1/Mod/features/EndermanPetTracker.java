@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.DisplayTitle;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -16,7 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EndermanPetTracker {
-
+	@SubscribeEvent
+	public void onInit(InitEvent event)
+	{
+		List<String> guiText = new ArrayList<>();
+		guiText.add(EnumChatFormatting.BLUE + "" + EnumChatFormatting.BOLD + "Rare\n" +
+				EnumChatFormatting.BLUE+ "Enderman\n" +
+				EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + "Epic\n" +
+				EnumChatFormatting.DARK_PURPLE + "Enderman:\n" +
+				EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + "Legendary\n" +
+				EnumChatFormatting.GOLD + "Enderman:");
+		guiText.add(EnumChatFormatting.BLUE + "\n" +
+				EnumChatFormatting.BLUE + "14\n" +
+				EnumChatFormatting.DARK_PURPLE + "\n" +
+				EnumChatFormatting.DARK_PURPLE + "5\n" +
+				EnumChatFormatting.GOLD + "\n" +
+				EnumChatFormatting.GOLD + "1");
+		GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 20, "endermanPetTracker", guiText, null);
+		cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+	}
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
     public void onChat(ClientChatReceivedEvent event) {
         String message = StringUtils.stripControlCodes(event.message.getUnformattedText());

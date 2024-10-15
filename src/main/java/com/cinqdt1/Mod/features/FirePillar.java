@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.ItemUtils;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -39,7 +41,15 @@ public class FirePillar {
     private UUID pillarID = null;
     private int timeOutPillar = 0;
     private int hits = 0;
-
+    @SubscribeEvent
+    public void onInit(InitEvent event)
+    {
+        List<String> guiText = new ArrayList<>();
+        guiText.add(EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + "Inferno Demonlord\n" +
+                "Pillar: " + EnumChatFormatting.RED + "6s");
+        GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 0, 0, 20, "firePillar", guiText, ItemUtils.getFirePillarTexture());
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+    }
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event){
         if(event.phase != TickEvent.Phase.START) return;

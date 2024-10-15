@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.ItemUtils;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -29,7 +31,14 @@ public class SummonsFeatures {
 	private  int lowestSummonHp = -1;
 	private Entity lowestEntity = null;
 	private boolean isSummonsSpawn = false;
-
+	public void onInit(InitEvent event)
+	{
+		List<String> guiText = new ArrayList<>();
+		guiText.add(EnumChatFormatting.GREEN + "Tank Zombie\n" +
+				EnumChatFormatting.RED + "126k");
+		GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 4, 3, 0, "lowestHpSummon", guiText, ItemUtils.getLowestSummonTexture());
+		cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+	}
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event) {
     	if (event.phase != Phase.START) return;

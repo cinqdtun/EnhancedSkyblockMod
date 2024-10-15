@@ -2,7 +2,9 @@ package com.cinqdt1.Mod.features;
 
 import com.cinqdt1.Mod.cinqdt1Mod;
 import com.cinqdt1.Mod.config.ModConfiguration;
+import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.events.RenderOverlay;
+import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.ItemUtils;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
@@ -23,6 +25,15 @@ public class FireFreeze {
     private boolean isDialogueHasSpawned = false;
     private boolean isCountdownFinished = false;
 
+    @SubscribeEvent
+    public void onInit(InitEvent event)
+    {
+        List<String> guiText = new ArrayList<>();
+        guiText.add(EnumChatFormatting.GRAY + "Fire Freeze\n" +
+                EnumChatFormatting.GRAY + "in " + EnumChatFormatting.RED + "1.3");
+        GuiFeature guiInfo = new GuiFeature(cinqdt1Mod.guiEdit.getId(), 4, 3, 0, "fireFreeze", guiText, ItemUtils.getFireFreezeTexture());
+        cinqdt1Mod.guiEdit.registerFeature(guiInfo);
+    }
     @SubscribeEvent
     public void onTick(TickEvent.ClientTickEvent event){
         if(event.phase != TickEvent.Phase.START) return;

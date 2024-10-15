@@ -1,25 +1,22 @@
 package com.cinqdt1.Mod.gui.buttons;
 
-import com.cinqdt1.Mod.gui.EditLocations;
 import com.cinqdt1.Mod.utils.Utils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.GuiButton;
 
 public class GuiFeatureButtonResizable extends GuiButton {
-    public final EditLocations.FeatureButton feature;
+    public final int id;
     private final int defaultButtonColor = Utils.getIntColorFromRGBAColor(255,255,255,150);
 
 
-    public GuiFeatureButtonResizable(GuiFeatureButton button, EditLocations.FeatureButton feature) {
+    public GuiFeatureButtonResizable(GuiFeatureButton button, int id) {
         super(-1, button.xPosition + button.width - 3, button.yPosition + button.height - 3, null);
         this.height = 6;
         this.width = 6;
         this.xPosition = button.xPosition + button.width - 3;
         this.yPosition = button.yPosition + button.height - 3;
-        this.feature = feature;
-
-
+        this.id = id;
     }
 
     @Override

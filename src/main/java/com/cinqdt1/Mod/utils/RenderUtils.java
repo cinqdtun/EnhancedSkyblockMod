@@ -48,8 +48,8 @@ public class RenderUtils {
         List<Integer> spaceBetweenLines = new ArrayList<>();
         int tWidth = renderItem != null ? 16 : 0;
 
-        x += 3 * scale;
-        y += 3 * scale;
+        //x += 3 * scale;
+        //y += 3 * scale;
         spaceBetweenLines.add(0);
 
         int i = 1;
