@@ -84,17 +84,17 @@ public class BundleTracker {
                 Matcher matchDivanFragment = divanFragmentPattern.matcher(unformattedName);
                 if (matchBobomb.find()) {
                     if (matchBobomb.groupCount() < 1) {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + 1);
                     } else {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + Integer.parseInt(matchBobomb.group(1)));
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "bobomb", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "bobomb") + Integer.parseInt(matchBobomb.group(1)));
                     }
                     cinqdt1Mod.newModConfig.saveConfig();
                     countedUUIDS.add(armorStandUUID);
                 } else if (matchDivanFragment.find()) {
                     if (matchDivanFragment.groupCount() < 1) {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + 1);
                     } else {
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + Integer.parseInt(matchDivanFragment.group(1)));
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "divanFragment", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanFragment") + Integer.parseInt(matchDivanFragment.group(1)));
                     }
                     cinqdt1Mod.newModConfig.saveConfig();
                     countedUUIDS.add(armorStandUUID);
@@ -106,32 +106,32 @@ public class BundleTracker {
                 String unformattedName = StringUtils.stripControlCodes(headSlot.getDisplayName());
                 switch (unformattedName) {
                     case "Gemstone Mixture":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "gemstoneMixture", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "gemstoneMixture") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "gemstoneMixture", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "gemstoneMixture") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Recall Potion":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "recallPotion", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "recallPotion") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "recallPotion", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "recallPotion") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Prehistoric Egg":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "prehistoricEgg", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "prehistoricEgg") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "prehistoricEgg", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "prehistoricEgg") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Jaderald":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "jaderald", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "jaderald") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "jaderald", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "jaderald") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Divan's Alloy":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanAlloy", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanAlloy") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "divanAlloy", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "divanAlloy") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Quick Claw":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "quickClaw", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "quickClaw") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "quickClaw", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "quickClaw") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                 }
@@ -139,12 +139,12 @@ public class BundleTracker {
                 String unformattedName = StringUtils.stripControlCodes(handSlot.getDisplayName());
                 switch (unformattedName) {
                     case "Pickonimbus 2000":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "pickonimbus2000", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "pickonimbus2000") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "pickonimbus2000", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "pickonimbus2000") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                         break;
                     case "Enchanted Book":
-                        cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "fortuneIV", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "fortuneIV") + 1);
+                        cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "fortuneIV", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "loot", "fortuneIV") + 1);
                         cinqdt1Mod.newModConfig.saveConfig();
                         countedUUIDS.add(armorStandUUID);
                 }
@@ -203,7 +203,7 @@ public class BundleTracker {
 
         if(!message.equals("  You've earned a Crystal Loot Bundle!")) return;
         try {
-            cinqdt1Mod.newModConfig.setInteger("bundleTracker", "runs", "bundleNumber", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "runs", "bundleNumber") + 1);
+            cinqdt1Mod.newModConfig.set("bundleTracker", "runs", "bundleNumber", cinqdt1Mod.newModConfig.getInteger("bundleTracker", "runs", "bundleNumber") + 1);
             cinqdt1Mod.newModConfig.saveConfig();
         }catch (Exception e){
             e.printStackTrace();

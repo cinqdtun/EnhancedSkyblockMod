@@ -88,7 +88,7 @@ public class FragRunTracker {
 						giantType = GiantType.DIAMANTE;
 						giantState = GiantState.ALIVE;
 						try {
-							cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "diamanteGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "diamanteGiant") + 1);
+							cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "diamanteGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "diamanteGiant") + 1);
 							cinqdt1Mod.newModConfig.saveConfig();
 						}catch (Exception e){
 							e.printStackTrace();
@@ -100,7 +100,7 @@ public class FragRunTracker {
 							giantType = GiantType.JOLLYPINK;
 							giantState = GiantState.ALIVE;
 							try {
-								cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "jollyPinkGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "jollyPinkGiant") + 1);
+								cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "jollyPinkGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "jollyPinkGiant") + 1);
 								cinqdt1Mod.newModConfig.saveConfig();
 							}catch (Exception e){
 								e.printStackTrace();
@@ -110,7 +110,7 @@ public class FragRunTracker {
 							giantType = GiantType.LASR;
 							giantState = GiantState.ALIVE;
 							try {
-								cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "LASRGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "LASRGiant") + 1);
+								cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "LASRGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "LASRGiant") + 1);
 								cinqdt1Mod.newModConfig.saveConfig();
 							}catch (Exception e){
 								e.printStackTrace();
@@ -122,7 +122,7 @@ public class FragRunTracker {
 					giantType = GiantType.BIGFOOT;
 					giantState = GiantState.ALIVE;
 					try {
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "bigFootGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "bigFootGiant") + 1);
+						cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "bigFootGiant", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "giant", "bigFootGiant") + 1);
 						cinqdt1Mod.newModConfig.saveConfig();
 					}catch (Exception e){
 						e.printStackTrace();
@@ -135,7 +135,7 @@ public class FragRunTracker {
 				if (itemType == Items.diamond_horse_armor && giantType == GiantType.DIAMANTE && entityName.equals("Diamante's Handle")) {
 					Utils.sendModMessage(EnumChatFormatting.GRAY + "You have obtained a " + EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + "DIAMANTE'S HANDLE " + EnumChatFormatting.RESET + "" + EnumChatFormatting.GRAY + "from the giant !");
 					try {
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "diamanteItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "diamanteItem") + 1);
+						cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "diamanteItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "diamanteItem") + 1);
 						cinqdt1Mod.newModConfig.saveConfig();
 					}catch (Exception e){
 						e.printStackTrace();
@@ -144,7 +144,7 @@ public class FragRunTracker {
 				} else if (itemType == Items.ender_eye && giantType == GiantType.LASR && entityName.equals("L.A.S.R.'s Eye")) {
 					Utils.sendModMessage(EnumChatFormatting.GRAY + "You have obtained a " + EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + "L.A.S.R.'S EYE " + EnumChatFormatting.RESET + "" + EnumChatFormatting.GRAY + "from the giant !");
 					try {
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "LASRItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "LASRItem") + 1);
+						cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "LASRItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "LASRItem") + 1);
 						cinqdt1Mod.newModConfig.saveConfig();
 					}catch (Exception e){
 						e.printStackTrace();
@@ -153,7 +153,7 @@ public class FragRunTracker {
 				} else if (itemType == Items.lead && giantType == GiantType.BIGFOOT && entityName.equals("Bigfoot's Lasso")) {
 					Utils.sendModMessage(EnumChatFormatting.GRAY + "You have obtained a " + EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + "BIGFOOT'S LASSO " + EnumChatFormatting.RESET + "" + EnumChatFormatting.GRAY + "from the giant !");
 					try {
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "bigFootItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "bigFootItem") + 1);
+						cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "bigFootItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "bigFootItem") + 1);
 						cinqdt1Mod.newModConfig.saveConfig();
 					}catch (Exception e){
 						e.printStackTrace();
@@ -162,7 +162,7 @@ public class FragRunTracker {
 				} else if (itemType == Items.firework_charge && giantType == GiantType.JOLLYPINK && entityName.equals("Jolly Pink Rock")) {
 					Utils.sendModMessage(EnumChatFormatting.GRAY + "You have obtained a " + EnumChatFormatting.DARK_PURPLE + "" + EnumChatFormatting.BOLD + "JOLLY PINK ROCK " + EnumChatFormatting.RESET + "" + EnumChatFormatting.GRAY + "from the giant !");
 					try {
-						cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "jollyPinkItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "jollyPinkItem") + 1);
+						cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "jollyPinkItem", cinqdt1Mod.newModConfig.getInteger("fragRunTracker", "loot", "jollyPinkItem") + 1);
 						cinqdt1Mod.newModConfig.saveConfig();
 					}catch (Exception e){
 						e.printStackTrace();

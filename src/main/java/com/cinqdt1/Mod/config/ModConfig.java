@@ -70,49 +70,45 @@ public class ModConfig {
         return config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().get(variable).getAsDouble();
     }
 
-    public void setBoolean(String category, String subCategory, String variable, boolean value) throws Exception {
+    public void set(String category, String subCategory, String variable, boolean value) throws Exception {
         has(category, subCategory, variable);
         config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    public void setString(String category, String subCategory, String variable, String value) throws Exception {
+    public void set(String category, String subCategory, String variable, String value) throws Exception {
         has(category, subCategory, variable);
         config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    public void setInteger(String category, String subCategory, String variable, int value) throws Exception {
+    public void set(String category, String subCategory, String variable, int value) throws Exception {
+        has(category, subCategory, variable);
+        config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
+    }
+    public void set(String category, String subCategory, String variable, double value) throws Exception {
         has(category, subCategory, variable);
         config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    public void setFloat(String category, String subCategory, String variable, float value) throws Exception {
-        has(category, subCategory, variable);
-        config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
-    }public void setDouble(String category, String subCategory, String variable, double value) throws Exception {
-        has(category, subCategory, variable);
-        config.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
-    }
-
-    protected void addBoolean(JsonObject json, String category, String subCategory, String variable, boolean value){
+    protected void add(JsonObject json, String category, String subCategory, String variable, boolean value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    protected void addString(JsonObject json, String category, String subCategory, String variable, String value){
+    protected void add(JsonObject json, String category, String subCategory, String variable, String value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    protected void addInteger(JsonObject json, String category, String subCategory, String variable, int value){
+    protected void add(JsonObject json, String category, String subCategory, String variable, int value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
 
-    protected void addFloat(JsonObject json, String category, String subCategory, String variable, float value){
+    protected void add(JsonObject json, String category, String subCategory, String variable, float value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
-    protected void addDouble(JsonObject json, String category, String subCategory, String variable, double value){
+    protected void add(JsonObject json, String category, String subCategory, String variable, double value){
         setKey(json, category, subCategory);
         json.get(category).getAsJsonObject().get(subCategory).getAsJsonObject().addProperty(variable, value);
     }
@@ -152,89 +148,89 @@ public class ModConfig {
     }
 
     protected void defaultConfigHandler(JsonObject json){
-        addDouble(json, "ashfangHp", "position", "x", 0);
-        addDouble(json, "ashfangHp", "position", "y", 0);
-        addFloat(json, "ashfangHp", "position", "scale", 1.0f);
+        this.add(json, "ashfangHp", "position", "x", 0);
+        this.add(json, "ashfangHp", "position", "y", 0);
+        this.add(json, "ashfangHp", "position", "scale", 1.0f);
 
-        addDouble(json, "batFirework", "position", "x", 0);
-        addDouble(json, "batFirework", "position", "y", 0);
-        addFloat(json, "batFirework", "position", "scale", 1.0f);
-        addInteger(json, "batFirework", "loot", "candy", 0);
-        addInteger(json, "batFirework", "loot", "fireworks_lauched", 0);
+        this.add(json, "batFirework", "position", "x", 0);
+        this.add(json, "batFirework", "position", "y", 0);
+        this.add(json, "batFirework", "position", "scale", 1.0f);
+        this.add(json, "batFirework", "loot", "candy", 0);
+        this.add(json, "batFirework", "loot", "fireworks_lauched", 0);
 
-        addDouble(json, "bobberTimer", "position", "x", 0);
-        addDouble(json, "bobberTimer", "position", "y", 0);
-        addFloat(json, "bobberTimer", "position", "scale", 1.0f);
+        this.add(json, "bobberTimer", "position", "x", 0);
+        this.add(json, "bobberTimer", "position", "y", 0);
+        this.add(json, "bobberTimer", "position", "scale", 1.0f);
 
-        addDouble(json, "bundleTracker", "position", "x", 0);
-        addDouble(json, "bundleTracker", "position", "y", 0);
-        addFloat(json, "bundleTracker", "position", "scale", 1.0f);
-        addInteger(json, "bundleTracker", "loot", "bobomb", 0);
-        addInteger(json, "bundleTracker", "loot", "pickonimbus2000", 0);
-        addInteger(json, "bundleTracker", "loot", "prehistoricEgg", 0);
-        addInteger(json, "bundleTracker", "loot", "divanFragment", 0);
-        addInteger(json, "bundleTracker", "loot", "recallPotion", 0);
-        addInteger(json, "bundleTracker", "loot", "jaderald", 0);
-        addInteger(json, "bundleTracker", "loot", "divanAlloy", 0);
-        addInteger(json, "bundleTracker", "loot", "fortuneIV", 0);
-        addInteger(json, "bundleTracker", "loot", "quickClaw", 0);
-        addInteger(json, "bundleTracker", "loot", "gemstoneMixture", 0);
-        addInteger(json, "bundleTracker", "runs", "bundleNumber", 0);
+        this.add(json, "bundleTracker", "position", "x", 0);
+        this.add(json, "bundleTracker", "position", "y", 0);
+        this.add(json, "bundleTracker", "position", "scale", 1.0f);
+        this.add(json, "bundleTracker", "loot", "bobomb", 0);
+        this.add(json, "bundleTracker", "loot", "pickonimbus2000", 0);
+        this.add(json, "bundleTracker", "loot", "prehistoricEgg", 0);
+        this.add(json, "bundleTracker", "loot", "divanFragment", 0);
+        this.add(json, "bundleTracker", "loot", "recallPotion", 0);
+        this.add(json, "bundleTracker", "loot", "jaderald", 0);
+        this.add(json, "bundleTracker", "loot", "divanAlloy", 0);
+        this.add(json, "bundleTracker", "loot", "fortuneIV", 0);
+        this.add(json, "bundleTracker", "loot", "quickClaw", 0);
+        this.add(json, "bundleTracker", "loot", "gemstoneMixture", 0);
+        this.add(json, "bundleTracker", "runs", "bundleNumber", 0);
 
-        addDouble(json, "fireFreeze", "position", "x", 0);
-        addDouble(json, "fireFreeze", "position", "y", 0);
-        addFloat(json, "fireFreeze", "position", "scale", 1.0f);
+        this.add(json, "fireFreeze", "position", "x", 0);
+        this.add(json, "fireFreeze", "position", "y", 0);
+        this.add(json, "fireFreeze", "position", "scale", 1.0f);
 
-        addDouble(json, "firePillar", "position", "x", 0);
-        addDouble(json, "firePillar", "position", "y", 0);
-        addFloat(json, "firePillar", "position", "scale", 1.0f);
+        this.add(json, "firePillar", "position", "x", 0);
+        this.add(json, "firePillar", "position", "y", 0);
+        this.add(json, "firePillar", "position", "scale", 1.0f);
 
-        addDouble(json, "fragRunTracker", "position", "x", 0);
-        addDouble(json, "fragRunTracker", "position", "y", 0);
-        addFloat(json, "fragRunTracker", "position", "scale", 1.0f);
-        addInteger(json, "fragRunTracker", "giant", "diamanteGiant", 0);
-        addInteger(json, "fragRunTracker", "giant", "jollyPinkGiant", 0);
-        addInteger(json, "fragRunTracker", "giant", "LASRGiant", 0);
-        addInteger(json, "fragRunTracker", "giant", "bigFootGiant", 0);
-        addInteger(json, "fragRunTracker", "loot", "diamanteItem", 0);
-        addInteger(json, "fragRunTracker", "loot", "jollyPinkItem", 0);
-        addInteger(json, "fragRunTracker", "loot", "LASRItem", 0);
-        addInteger(json, "fragRunTracker", "loot", "bigFootItem", 0);
+        this.add(json, "fragRunTracker", "position", "x", 0);
+        this.add(json, "fragRunTracker", "position", "y", 0);
+        this.add(json, "fragRunTracker", "position", "scale", 1.0f);
+        this.add(json, "fragRunTracker", "giant", "diamanteGiant", 0);
+        this.add(json, "fragRunTracker", "giant", "jollyPinkGiant", 0);
+        this.add(json, "fragRunTracker", "giant", "LASRGiant", 0);
+        this.add(json, "fragRunTracker", "giant", "bigFootGiant", 0);
+        this.add(json, "fragRunTracker", "loot", "diamanteItem", 0);
+        this.add(json, "fragRunTracker", "loot", "jollyPinkItem", 0);
+        this.add(json, "fragRunTracker", "loot", "LASRItem", 0);
+        this.add(json, "fragRunTracker", "loot", "bigFootItem", 0);
 
-        addDouble(json, "endermanPetTracker", "position", "x", 0);
-        addDouble(json, "endermanPetTracker", "position", "y", 0);
-        addFloat(json, "endermanPetTracker", "position", "scale", 1.0f);
-        addInteger(json, "endermanPetTracker", "loot", "rareEndermanPet", 0);
-        addInteger(json, "endermanPetTracker", "loot", "epicEndermanPet", 0);
-        addInteger(json, "endermanPetTracker", "loot", "legendaryEndermanPet", 0);
+        this.add(json, "endermanPetTracker", "position", "x", 0);
+        this.add(json, "endermanPetTracker", "position", "y", 0);
+        this.add(json, "endermanPetTracker", "position", "scale", 1.0f);
+        this.add(json, "endermanPetTracker", "loot", "rareEndermanPet", 0);
+        this.add(json, "endermanPetTracker", "loot", "epicEndermanPet", 0);
+        this.add(json, "endermanPetTracker", "loot", "legendaryEndermanPet", 0);
 
-        addDouble(json, "lowestHpSummon", "position", "x", 0);
-        addDouble(json, "lowestHpSummon", "position", "y", 0);
-        addFloat(json, "lowestHpSummon", "position", "scale", 1.0f);
+        this.add(json, "lowestHpSummon", "position", "x", 0);
+        this.add(json, "lowestHpSummon", "position", "y", 0);
+        this.add(json, "lowestHpSummon", "position", "scale", 1.0f);
 
-        addDouble(json, "mythologicalLastInqui", "position", "x", 0);
-        addDouble(json, "mythologicalLastInqui", "position", "y", 0);
-        addFloat(json, "mythologicalLastInqui", "position", "scale", 1.0f);
-        addInteger(json, "mythologicalLastInqui", "stats", "lastInqui", 0);
+        this.add(json, "mythologicalLastInqui", "position", "x", 0);
+        this.add(json, "mythologicalLastInqui", "position", "y", 0);
+        this.add(json, "mythologicalLastInqui", "position", "scale", 1.0f);
+        this.add(json, "mythologicalLastInqui", "stats", "lastInqui", 0);
 
-        addDouble(json, "mythologicalHp", "position", "x", 0);
-        addDouble(json, "mythologicalHp", "position", "y", 0);
-        addFloat(json, "mythologicalHp", "position", "scale", 1.0f);
+        this.add(json, "mythologicalHp", "position", "x", 0);
+        this.add(json, "mythologicalHp", "position", "y", 0);
+        this.add(json, "mythologicalHp", "position", "scale", 1.0f);
 
-        addDouble(json, "scathaCoolodwn", "position", "x", 0);
-        addDouble(json, "scathaCoolodwn", "position", "y", 0);
-        addFloat(json, "scathaCoolodwn", "position", "scale", 1.0f);
+        this.add(json, "scathaCoolodwn", "position", "x", 0);
+        this.add(json, "scathaCoolodwn", "position", "y", 0);
+        this.add(json, "scathaCoolodwn", "position", "scale", 1.0f);
 
-        addDouble(json, "scavengedStats", "position", "x", 0);
-        addDouble(json, "scavengedStats", "position", "y", 0);
-        addFloat(json, "scavengedStats", "position", "scale", 1.0f);
-        addInteger(json, "scavengedStats", "loot", "piece", 0);
-        addInteger(json, "scavengedStats", "stats", "time", 0);
+        this.add(json, "scavengedStats", "position", "x", 0);
+        this.add(json, "scavengedStats", "position", "y", 0);
+        this.add(json, "scavengedStats", "position", "scale", 1.0f);
+        this.add(json, "scavengedStats", "loot", "piece", 0);
+        this.add(json, "scavengedStats", "stats", "time", 0);
 
-        addDouble(json, "xpRunTracker", "position", "x", 0);
-        addDouble(json, "xpRunTracker", "position", "y", 0);
-        addFloat(json, "xpRunTracker", "position", "scale", 1.0f);
-        addInteger(json, "xpRunTracker", "stats", "runs", 0);
-        addInteger(json, "xpRunTracker", "stats", "totalXp", 0);
+        this.add(json, "xpRunTracker", "position", "x", 0);
+        this.add(json, "xpRunTracker", "position", "y", 0);
+        this.add(json, "xpRunTracker", "position", "scale", 1.0f);
+        this.add(json, "xpRunTracker", "stats", "runs", 0);
+        this.add(json, "xpRunTracker", "stats", "totalXp", 0);
     }
 }

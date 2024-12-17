@@ -68,7 +68,7 @@ public class GuiEdit extends GuiScreen {
                 if (buttonAction == GuiEdit.Action.RESIZE) {
                     float scale = button.getNewScaleWithX(xMoved);
                     if (scale > 0.5f && scale < 6.0f)
-                        cinqdt1Mod.newModConfig.setFloat(features.get(i).getCoordinatesCategory(), "position", "scale", scale);
+                        cinqdt1Mod.newModConfig.set(features.get(i).getCoordinatesCategory(), "position", "scale", scale);
                     cinqdt1Mod.newModConfig.saveConfig();
                     this.buttonList.clear();
                     initGui();
@@ -76,8 +76,8 @@ public class GuiEdit extends GuiScreen {
                 }else if(buttonAction == GuiEdit.Action.MOVE) {
                     double xValue = cinqdt1Mod.newModConfig.getDouble(features.get(i).getCoordinatesCategory(), "position", "x");
                     double yValue = cinqdt1Mod.newModConfig.getDouble(features.get(i).getCoordinatesCategory(), "position", "y");
-                    cinqdt1Mod.newModConfig.setDouble(features.get(i).getCoordinatesCategory(), "position", "x", xValue + xMoved);
-                    cinqdt1Mod.newModConfig.setDouble(features.get(i).getCoordinatesCategory(), "position", "y", yValue + yMoved);
+                    cinqdt1Mod.newModConfig.set(features.get(i).getCoordinatesCategory(), "position", "x", xValue + xMoved);
+                    cinqdt1Mod.newModConfig.set(features.get(i).getCoordinatesCategory(), "position", "y", yValue + yMoved);
                     cinqdt1Mod.newModConfig.saveConfig();
                     this.buttonList.clear();
                     initGui();

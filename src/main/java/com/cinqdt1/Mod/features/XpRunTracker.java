@@ -53,8 +53,8 @@ public class XpRunTracker {
 				String currentPetName = ApiUtils.getPetName(response, UUID);
 				double currentPetXp = ApiUtils.getActivePetXp(response, UUID);
 				if (currentPetName == null || currentPetXp < 0 || !currentPetName.equals(petName)) return;
-				cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "runs", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "runs") + 1);
-				cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "totalXp", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "totalXp") + ((int) currentPetXp - petXpStart));
+				cinqdt1Mod.newModConfig.set("xpRunTracker", "stats", "runs", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "runs") + 1);
+				cinqdt1Mod.newModConfig.set("xpRunTracker", "stats", "totalXp", cinqdt1Mod.newModConfig.getInteger("xpRunTracker", "stats", "totalXp") + ((int) currentPetXp - petXpStart));
 				cinqdt1Mod.newModConfig.saveConfig();
 				totalPetXp = (int) currentPetXp;
 				petXpStart = 0;

@@ -41,8 +41,8 @@ public class BatFirework {
 
         try{
             int candy = Integer.parseInt(candyMatcher.group(1));
-            cinqdt1Mod.newModConfig.setInteger("batFirework", "loot", "candy", cinqdt1Mod.newModConfig.getInteger("batFirework", "loot", "candy") + candy);
-            cinqdt1Mod.newModConfig.setInteger("batFirework", "loot", "fireworks_lauched", cinqdt1Mod.newModConfig.getInteger("batFirework", "loot", "fireworks_lauched") + 1);
+            cinqdt1Mod.newModConfig.set("batFirework", "loot", "candy", cinqdt1Mod.newModConfig.getInteger("batFirework", "loot", "candy") + candy);
+            cinqdt1Mod.newModConfig.set("batFirework", "loot", "fireworks_lauched", cinqdt1Mod.newModConfig.getInteger("batFirework", "loot", "fireworks_lauched") + 1);
             cinqdt1Mod.newModConfig.saveConfig();
         }catch (Exception e){
             //Utils.sendModMessage(e.getMessage());

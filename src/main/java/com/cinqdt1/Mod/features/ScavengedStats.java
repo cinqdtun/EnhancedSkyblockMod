@@ -38,7 +38,7 @@ public class ScavengedStats {
         tickElapsed++;
         if(tickElapsed % 20 != 0) return;
         try {
-            cinqdt1Mod.newModConfig.setInteger("scathaCoolodwn", "stats", "time", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "stats", "time") + 1);
+            cinqdt1Mod.newModConfig.set("scathaCoolodwn", "stats", "time", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "stats", "time") + 1);
             cinqdt1Mod.newModConfig.saveConfig();
             tickElapsed = 0;
         }catch (Exception e){
@@ -56,7 +56,7 @@ public class ScavengedStats {
         if(!scavengedPattern.matcher(message).find()) return;
 
         try{
-            cinqdt1Mod.newModConfig.setInteger("scavengedStats", "loot", "piece", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "loot", "piece") + 1);
+            cinqdt1Mod.newModConfig.set("scavengedStats", "loot", "piece", cinqdt1Mod.newModConfig.getInteger("scavengedStats", "loot", "piece") + 1);
             cinqdt1Mod.newModConfig.saveConfig();
         }catch (Exception e){
             e.printStackTrace();

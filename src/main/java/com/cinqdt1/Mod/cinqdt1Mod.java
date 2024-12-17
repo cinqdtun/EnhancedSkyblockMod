@@ -41,31 +41,17 @@ public class cinqdt1Mod {
     private static boolean shouldShowTitle = false;
     private static String[] titleInfos = new String[2];
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		ClientCommandHandler.instance.registerCommand(new MainCommand());
-		ClientCommandHandler.instance.registerCommand(new NotCountRun());
-	}
-
     public static void displayTitle(String title, String subtitle){
         titleInfos[0] = title;
         titleInfos[1] = subtitle;
         shouldShowTitle = true;
     }
 
-	@EventHandler
-	public void PostInit(FMLPostInitializationEvent event) {
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        ClientCommandHandler.instance.registerCommand(new MainCommand());
+        ClientCommandHandler.instance.registerCommand(new NotCountRun());
 
-	}
-    /*
-	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public void onTick(TickEvent.ClientTickEvent event) {
-		if (event.phase != Phase.START) return;
-	}
-     */
-
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
         Vigilance.initialize();
         config.preload();
         newModConfig.init();
@@ -93,6 +79,24 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new ScavengedStats());
         MinecraftForge.EVENT_BUS.register(new TransferCooldownHelper());
         MinecraftForge.EVENT_BUS.register(new ScathaMining());
+    }
+
+	@EventHandler
+	public void PostInit(FMLPostInitializationEvent event) {
+
+	}
+    /*
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public void onTick(TickEvent.ClientTickEvent event) {
+		if (event.phase != Phase.START) return;
+	}
+     */
+
+	@EventHandler
+	public void init(FMLInitializationEvent event) {
+
+
+
 
         if(devMode){
             MinecraftForge.EVENT_BUS.register(new DevFeatures());

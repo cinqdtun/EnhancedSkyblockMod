@@ -141,13 +141,13 @@ public class MythologicalFeatures {
                     digMob = MythologicalMob.CHAMPION;
                 } else if (entity.getName().contains("Minos Inquisitor")) {
                     digMob = MythologicalMob.INQUISITOR;
-                    cinqdt1Mod.newModConfig.setInteger("mythologicalLastInqui", "stats", "lastInqui", (int) (System.currentTimeMillis() / 1000));
+                    cinqdt1Mod.newModConfig.set("mythologicalLastInqui", "stats", "lastInqui", (int) (System.currentTimeMillis() / 1000));
                     cinqdt1Mod.newModConfig.saveConfig();
                 }
             }
         } else if (message.contains("a Minos Inquisitor!")) {
             digMob = MythologicalMob.INQUISITOR;
-            cinqdt1Mod.newModConfig.setInteger("mythologicalLastInqui", "stats", "lastInqui", (int) (System.currentTimeMillis() / 1000));
+            cinqdt1Mod.newModConfig.set("mythologicalLastInqui", "stats", "lastInqui", (int) (System.currentTimeMillis() / 1000));
             cinqdt1Mod.newModConfig.saveConfig();
         }
     }

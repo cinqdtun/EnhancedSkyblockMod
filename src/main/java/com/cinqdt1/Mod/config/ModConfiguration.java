@@ -267,14 +267,14 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void resetFragRunTracker() {
 		try {
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "diamanteGiant", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "LASRGiant", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "bigFootGiant", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "giant", "jollyPinkGiant", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "diamanteItem", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "LASRItem", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "bigFootItem", 0);
-			cinqdt1Mod.newModConfig.setInteger("fragRunTracker", "loot", "jollyPinkItem", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "diamanteGiant", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "LASRGiant", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "bigFootGiant", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "giant", "jollyPinkGiant", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "diamanteItem", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "LASRItem", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "bigFootItem", 0);
+			cinqdt1Mod.newModConfig.set("fragRunTracker", "loot", "jollyPinkItem", 0);
 			cinqdt1Mod.newModConfig.saveConfig();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -291,9 +291,9 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void resetEndermanPetTracker() {
 		try {
-			cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "rareEndermanPet", 0);
-			cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "epicEndermanPet", 0);
-			cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "legendaryEndermanPet", 0);
+			cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "rareEndermanPet", 0);
+			cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "epicEndermanPet", 0);
+			cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "legendaryEndermanPet", 0);
 			cinqdt1Mod.newModConfig.saveConfig();
 		}catch (Exception e){
 			e.printStackTrace();
@@ -310,8 +310,8 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void resetF6xpRun() {
 		try {
-			cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "runs", 0);
-			cinqdt1Mod.newModConfig.setInteger("xpRunTracker", "stats", "totalXp", 0);
+			cinqdt1Mod.newModConfig.set("xpRunTracker", "stats", "runs", 0);
+			cinqdt1Mod.newModConfig.set("xpRunTracker", "stats", "totalXp", 0);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -327,17 +327,17 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void resetBundleStats(){
 		try{
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "bobomb", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "pickonimbus2000", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "prehistoricEgg", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanFragment", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "recallPotion", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "jaderald", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "divanAlloy", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "fortuneIV", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "quickClaw", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "loot", "gemstoneMixture", 0);
-			cinqdt1Mod.newModConfig.setInteger("bundleTracker", "runs", "bundleNumber", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "bobomb", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "pickonimbus2000", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "prehistoricEgg", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "divanFragment", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "recallPotion", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "jaderald", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "divanAlloy", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "fortuneIV", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "quickClaw", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "loot", "gemstoneMixture", 0);
+			cinqdt1Mod.newModConfig.set("bundleTracker", "runs", "bundleNumber", 0);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -353,8 +353,8 @@ public class ModConfiguration extends Vigilant {
 	)
 	public void resetScavengedStats(){
 		try {
-			cinqdt1Mod.newModConfig.setInteger("scavengedStats", "loot", "piece", 0);
-			cinqdt1Mod.newModConfig.setInteger("scavengedStats", "stats", "time", 0);
+			cinqdt1Mod.newModConfig.set("scavengedStats", "loot", "piece", 0);
+			cinqdt1Mod.newModConfig.set("scavengedStats", "stats", "time", 0);
 		}catch (Exception e){
 			e.printStackTrace();
 		}

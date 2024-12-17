@@ -50,15 +50,15 @@ public class EndermanPetTracker {
 				String endermanDrop = event.message.getFormattedText();
 				if (endermanDrop.contains(EnumChatFormatting.BLUE + "Enderman")) {
 					//Rare
-					cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "rareEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "rareEndermanPet") + 1);
+					cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "rareEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "rareEndermanPet") + 1);
 					cinqdt1Mod.newModConfig.saveConfig();
 				} else if (endermanDrop.contains(EnumChatFormatting.DARK_PURPLE + "Enderman")) {
 					//Epic
-					cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "epicEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "epicEndermanPet") + 1);
+					cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "epicEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "epicEndermanPet") + 1);
 					cinqdt1Mod.newModConfig.saveConfig();
 				} else if (endermanDrop.contains(EnumChatFormatting.GOLD + "Enderman")) {
 					//Legendary
-					cinqdt1Mod.newModConfig.setInteger("endermanPetTracker", "loot", "legendaryEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "legendaryEndermanPet") + 1);
+					cinqdt1Mod.newModConfig.set("endermanPetTracker", "loot", "legendaryEndermanPet",cinqdt1Mod.newModConfig.getInteger("endermanPetTracker", "loot", "legendaryEndermanPet") + 1);
 					cinqdt1Mod.newModConfig.saveConfig();
 					DisplayTitle.displayTitle(EnumChatFormatting.GOLD + "ENDERMAN PET !", 5);
 				} else {
