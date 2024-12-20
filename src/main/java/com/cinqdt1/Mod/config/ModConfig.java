@@ -227,6 +227,15 @@ public class ModConfig {
         this.add(json, "scavengedStats", "loot", "piece", 0);
         this.add(json, "scavengedStats", "stats", "time", 0);
 
+        this.add(json, "winterFishing", "position", "x", 0);
+        this.add(json, "winterFishing", "position", "y", 0);
+        this.add(json, "winterFishing", "position", "scale", 1.0f);
+        this.add(json, "winterFishing", "drop", "sinceYeti", 0);
+        this.add(json, "winterFishing", "drop", "sinceReindrake", 0);
+        this.add(json, "winterFishing", "drop", "totalSeaCreature", 0);
+        this.add(json, "winterFishing", "drop", "yeti", 0);
+        this.add(json, "winterFishing", "drop", "reindrake", 0);
+
         this.add(json, "xpRunTracker", "position", "x", 0);
         this.add(json, "xpRunTracker", "position", "y", 0);
         this.add(json, "xpRunTracker", "position", "scale", 1.0f);

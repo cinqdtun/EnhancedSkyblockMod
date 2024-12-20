@@ -8,6 +8,7 @@ import com.cinqdt1.Mod.events.Event;
 import com.cinqdt1.Mod.events.InitEvent;
 import com.cinqdt1.Mod.features.*;
 import com.cinqdt1.Mod.features.dojohelper.DisciplineHelper;
+import com.cinqdt1.Mod.features.fishingtracker.WinterFishing;
 import com.cinqdt1.Mod.gui.GuiEdit;
 import com.cinqdt1.Mod.utils.DisplayTitle;
 import gg.essential.vigilance.Vigilance;
@@ -79,6 +80,7 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(new ScavengedStats());
         MinecraftForge.EVENT_BUS.register(new TransferCooldownHelper());
         MinecraftForge.EVENT_BUS.register(new ScathaMining());
+        MinecraftForge.EVENT_BUS.register(new WinterFishing());
     }
 
 	@EventHandler

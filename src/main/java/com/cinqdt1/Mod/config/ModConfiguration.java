@@ -231,9 +231,18 @@ public class ModConfiguration extends Vigilant {
 			name = "Hub transfer cooldown",
 			description = "Show when transfer cooldown is over and offer the option to delay the tp when it come over",
 			category = "Misc",
-			subcategory = "Trasnfer Cooldown"
+			subcategory = "Transfer Cooldown"
 	)
 	public static boolean hubTransferCooldownState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Winter stats",
+			description = "Display stats abouts creatures fished in winter",
+			category = "Fishing",
+			subcategory = "Winter"
+	)
+	public static boolean winterTrackState = false;
 
 	public ModConfiguration() {
         super(new File("./config/5dt1's Mod.toml"), "5dt1's Mod", new JVMAnnotationPropertyCollector(), ConfigSorting.INSTANCE );
@@ -355,6 +364,26 @@ public class ModConfiguration extends Vigilant {
 		try {
 			cinqdt1Mod.newModConfig.set("scavengedStats", "loot", "piece", 0);
 			cinqdt1Mod.newModConfig.set("scavengedStats", "stats", "time", 0);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+	}
+
+	@Property(
+			type = PropertyType.BUTTON,
+			name = "Reset winter stats",
+			description = "Reset winter sea creatures stats",
+			category = "Fishing",
+			subcategory = "Winter",
+			placeholder = "Reset"
+	)
+	public void resetWinterSeaCreature(){
+		try {
+			cinqdt1Mod.newModConfig.set("winterFishing", "drop", "sinceYeti", 0);
+			cinqdt1Mod.newModConfig.set("winterFishing", "drop", "sinceReindrake", 0);
+			cinqdt1Mod.newModConfig.set("winterFishing", "drop", "totalSeaCreature", 0);
+			cinqdt1Mod.newModConfig.set("winterFishing", "drop", "yeti", 0);
+			cinqdt1Mod.newModConfig.set("winterFishing", "drop", "reindrake", 0);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
