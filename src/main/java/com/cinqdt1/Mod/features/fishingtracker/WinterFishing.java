@@ -20,7 +20,7 @@ public class WinterFishing {
             "The Sea Emperor arises from the depths.", "Your Chumcap Bucket trembles, it's an Agarimoo.", "Is that even a fish? It's the Carrot King!",
             "A tiny fin emerges from the water, you've caught a Nurse Shark.", "You spot a fin as blue as the water it came from, it's a Blue Shark.", "A striped beast bounds from the depths, the wild Tiger Shark!",
             "Hide no longer, a Great White Shark has tracked your scent and thirsts for your blood!",
-            "Frozen Steve fell into the pond long ago, never to resurface...until now!", "It's a snowman! He looks harmless.", "The Grinch stole Jerry's gifts... Get them back!", "What is this creature!?", "You found a forgotten Nutcracker laying beneath the ice.", "A Reindrake forms from the depths."
+            "Frozen Steve fell into the pond long ago, never to resurface...until now!", "It's a snowman! He looks harmless.", "The Grinch stole Jerry's Gifts...get them back!", "What is this creature!?", "You found a forgotten Nutcracker laying beneath the ice.", "A Reindrake forms from the depths."
     };
     @SubscribeEvent
     public void onInit(InitEvent event)
@@ -62,8 +62,8 @@ public class WinterFishing {
                 }
                 else
                     cinqdt1Mod.newModConfig.set("winterFishing", "drop", "sinceYeti", cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceYeti") + 1);
-
                 cinqdt1Mod.newModConfig.saveConfig();
+                return;
             }
         }
     }
@@ -71,6 +71,7 @@ public class WinterFishing {
     @SubscribeEvent
     public void renderPlayerInfo(RenderOverlay event) {
         if(!ModConfiguration.winterTrackState) return;
+        if (!Utils.inSkyblock) return;
         try{
             int totalYeti = cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "yeti");
             int totalReindrake = cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "reindrake");
@@ -80,8 +81,8 @@ public class WinterFishing {
                     EnumChatFormatting.AQUA + "Since last yeti :\n" +
                     EnumChatFormatting.AQUA + "Since last reindrake");
             winterSeaCreatureText.add(EnumChatFormatting.DARK_AQUA + "\n" +
-                    EnumChatFormatting.AQUA + cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceYeti") + " (" + (totalYeti <= 0 ? "NA" : Math.round((double)totalSeaCreature / totalYeti * 100.0) / 100) + "%)" + "\n" +
-                    EnumChatFormatting.AQUA + cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceReindrake") + " (" + (totalReindrake <= 0 ? "NA" : Math.round((double)totalSeaCreature / totalReindrake * 100.0) / 100) + "%)");
+                    EnumChatFormatting.AQUA + cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceYeti") + " (" + (totalYeti <= 0 ? "NA" : (double)Math.round((double)totalYeti / totalSeaCreature * 10000.0) / 100) + "%)" + "\n" +
+                    EnumChatFormatting.AQUA + cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceReindrake") + " (" + (totalReindrake <= 0 ? "NA" : (double)Math.round((double)totalReindrake / totalSeaCreature * 10000.0) / 100) + "%)");
             RenderUtils.renderOverlay(cinqdt1Mod.newModConfig.getInteger("winterFishing", "position", "x"), cinqdt1Mod.newModConfig.getInteger("winterFishing", "position", "y"), cinqdt1Mod.newModConfig.getFloat("winterFishing", "position", "scale"), null, 0, 0, winterSeaCreatureText, 20);
         } catch (Exception e) {
             e.printStackTrace();
