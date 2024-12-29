@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinGuiContainer extends GuiScreen {
     @Shadow
     public Container inventorySlots;
+
     @Inject(
             at = @At("HEAD"),
             method = "handleMouseClick",

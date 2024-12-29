@@ -244,6 +244,24 @@ public class ModConfiguration extends Vigilant {
 	)
 	public static boolean winterTrackState = false;
 
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Display attributes",
+			description = "Display attributes on items",
+			category = "Attributes",
+			subcategory = "Misc"
+	)
+	public static boolean showAttributesState = false;
+
+	@Property(
+			type = PropertyType.SWITCH,
+			name = "Display highest attribute lvl",
+			description = "Display the highest attribute lvl on stack count on items",
+			category = "Attributes",
+			subcategory = "Misc"
+	)
+	public static boolean showHighestAttributeState = false;
+
 	public ModConfiguration() {
         super(new File("./config/5dt1's Mod.toml"), "5dt1's Mod", new JVMAnnotationPropertyCollector(), ConfigSorting.INSTANCE );
         try {

@@ -60,6 +60,7 @@ public class cinqdt1Mod {
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.register(new Event());
         MinecraftForge.EVENT_BUS.register(new AshfangFeatures());
+        MinecraftForge.EVENT_BUS.register(new AttributesDisplay());
         MinecraftForge.EVENT_BUS.register(new DisplayTitle());
         MinecraftForge.EVENT_BUS.register(new BatFirework());
         MinecraftForge.EVENT_BUS.register(new BobberTimer());

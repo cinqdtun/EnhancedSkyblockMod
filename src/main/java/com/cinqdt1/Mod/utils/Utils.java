@@ -9,6 +9,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
@@ -27,10 +29,7 @@ import org.lwjgl.opengl.GL11;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -219,7 +218,7 @@ public class Utils {
 	    }
 	 public static boolean containsPattern(List<String> array, Pattern pattern) {
 		 for(String line : array) {
-			 if(line.length() < 1) continue;
+			 if(line.isEmpty()) continue;
 			 String unformattedLine = StringUtils.stripControlCodes(line);
 			 Matcher matchLineResult = pattern.matcher(unformattedLine);
 			 if(matchLineResult.find()) {
@@ -228,6 +227,13 @@ public class Utils {
 		 }
 		 return false;
 	 }
+
+	public static boolean containPattern(String line, Pattern pattern) {
+		if(line.isEmpty()) return false;
+		String unformattedLine = StringUtils.stripControlCodes(line);
+		Matcher matchLineResult = pattern.matcher(unformattedLine);
+		return matchLineResult.find();
+	}
 	 
 	 public static void drawOnSlot(int size, int xSlotPos, int ySlotPos, int colour) {
 			ScaledResolution sr = new ScaledResolution(Minecraft.getMinecraft());
@@ -486,7 +492,7 @@ public class Utils {
 		return item;
 	}
 	/*
-	 * Taken from Minecraft
+	 * Taken from Forge
 	 * At FontRenderer#getStringWidth
 	 * For fixing some error of rendering with Optifine cut sometime before the end
 	 */
@@ -550,5 +556,46 @@ public class Utils {
 
 	public static void showTitle(String title, String subtitle) {
 		cinqdt1Mod.displayTitle(title, subtitle);
+	}
+
+	public static <T extends Entity> List<Entity> getEntityUnder(EntityArmorStand nameTag, Class<T> entityClass)
+	{
+		List<Entity> nearbyEntities = nameTag.getEntityWorld().getEntitiesInAABBexcluding(nameTag, nameTag.getEntityBoundingBox().expand(0.2, 3, 0.2), null);
+		List<Entity> possiblesEntity = new ArrayList<>();
+		for(Entity nearbyEntity : nearbyEntities) {
+			if (!entityClass.isInstance(nearbyEntity)) continue;
+			possiblesEntity.add(nearbyEntity);
+		}
+		return possiblesEntity;
+	}
+
+	public static Map<String, Integer> getAttributes(ItemStack stack) {
+		Map<String, Integer> attributes = new TreeMap<>();
+		if (stack.hasTagCompound()) {
+			NBTTagCompound tagCompound = stack.getTagCompound();
+			if (tagCompound.hasKey("ExtraAttributes", 10)) {
+				NBTTagCompound extraAttributes = tagCompound.getCompoundTag("ExtraAttributes");
+				if (extraAttributes.hasKey("attributes", 10)) {
+					NBTTagCompound attributesTag = extraAttributes.getCompoundTag("attributes");
+					for (String key : attributesTag.getKeySet()) {
+						if (key.equals("mending")) // Need to handle weird case where vitality is mending in nbt for some reason
+							attributes.put("vitality", attributesTag.getInteger(key));
+						else
+							attributes.put(key, attributesTag.getInteger(key));
+					}
+				}
+			}
+		}
+		return attributes;
+	}
+
+	public static Map.Entry<String, Integer> getMaxEntry(Map<String, Integer> map) {
+		Map.Entry<String, Integer> maxEntry = null;
+		for (Map.Entry<String, Integer> entry : map.entrySet()) {
+			if (maxEntry == null || entry.getValue().compareTo(maxEntry.getValue()) > 0) {
+				maxEntry = entry;
+			}
+		}
+		return maxEntry;
 	}
 }
