@@ -41,11 +41,13 @@ public class Utils {
 	public static boolean inF6 = false;
 	public static boolean inF7 = false;
 	public static boolean inCrimsonIsle = false;
+	public static boolean inWinterIsland = false;
 	public static boolean inNucleus = false;
 	public static boolean inDivan = false;
 
 	public static List<String> crimsonIsleSubLocations = Arrays.asList("Barbarian Outpost","The Bastion","Blazing Volcano","Burning Desert","Cathedral","Crimson Fields","Crimson Isle","Dojo","Dragontail","Forgotten Skull","Kuudra's End","Mage Outpost","Magma Chamber","Mystic Marsh","Odger's Hut","Ruins of Ashfang","Scarleton","Stronghold","The Wasteland","Matriarch's Lair","Belly of the Beast","Aura's Lab");
-	
+	public static List<String> winterIslandSubLocations = Arrays.asList("Jerry's Workshop", "Jerry Pond", "Mount Jerry", "Gary's Shack", "Glacial Cave", "Terry's Shack", "Hot Springs", "Jerry Pond", "Reflective Pond", "Sunken Jerry Pond", "Sherry's Showroom", "Einary's Emporium");
+
 	public static void checkForSkyblock() {
 		Minecraft mc = Minecraft.getMinecraft();
 		if (mc != null && mc.theWorld != null && !mc.isSingleplayer()) {
@@ -101,14 +103,26 @@ public class Utils {
 		if (inSkyblock) {
 			for(String location : crimsonIsleSubLocations) {
 				if (isInScoreboard(location)) {
-	    			inCrimsonIsle = true;
-	    			return;
+					inCrimsonIsle = true;
+					return;
 				}
 			}
-    		
 		}
 		inCrimsonIsle = false;
 	}
+
+	public static void checkForWinterIsland() {
+		if (inSkyblock) {
+			for(String location : winterIslandSubLocations) {
+				if (isInScoreboard(location)) {
+					inWinterIsland = true;
+					return;
+				}
+			}
+		}
+		inWinterIsland = false;
+	}
+
 	public static void checkForNucleus(){
 		if (inSkyblock) {
 			if (isInScoreboard("Crystal Nucleus")) {
@@ -598,4 +612,6 @@ public class Utils {
 		}
 		return maxEntry;
 	}
+
+
 }

@@ -7,6 +7,7 @@ import com.cinqdt1.Mod.events.RenderOverlay;
 import com.cinqdt1.Mod.gui.GuiFeature;
 import com.cinqdt1.Mod.utils.RenderUtils;
 import com.cinqdt1.Mod.utils.Utils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StringUtils;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
@@ -36,10 +37,13 @@ public class WinterFishing {
         cinqdt1Mod.guiEdit.registerFeature(guiInfo);
     }
     @SubscribeEvent
-    public void onChat(ClientChatReceivedEvent event) throws Exception {
+    public void onChat(ClientChatReceivedEvent event) throws Exception
+    {
+        if (event.type == 2) return;
+        if (!Utils.inWinterIsland) return;
+
         String message = StringUtils.stripControlCodes(event.message.getUnformattedText());
 
-        if (event.type == 2) return;
         if (message.contains(":")) return;
 
         for (String creature : fishingCreatures) {
@@ -53,6 +57,11 @@ public class WinterFishing {
                 }
                 else
                     cinqdt1Mod.newModConfig.set("winterFishing", "drop", "sinceReindrake", cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "sinceReindrake") + 1);
+
+                if (message.contains("You found a forgotten Nutcracker laying beneath the ice."))
+                {
+                    Minecraft.getMinecraft().thePlayer.sendChatMessage("/pc FireFly25 Please kill my Nutcracker :)");
+                }
 
                 if (message.contains("What is this creature!?"))
                 {
@@ -71,7 +80,7 @@ public class WinterFishing {
     @SubscribeEvent
     public void renderPlayerInfo(RenderOverlay event) {
         if(!ModConfiguration.winterTrackState) return;
-        if (!Utils.inSkyblock) return;
+        if (!Utils.inWinterIsland) return;
         try{
             int totalYeti = cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "yeti");
             int totalReindrake = cinqdt1Mod.newModConfig.getInteger("winterFishing", "drop", "reindrake");

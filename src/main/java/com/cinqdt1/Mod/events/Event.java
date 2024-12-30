@@ -49,6 +49,7 @@ public class Event {
 			Utils.checkForF6();
 			Utils.checkForF7();
 			Utils.checkForCrimsonIsle();
+			Utils.checkForWinterIsland();
 			Utils.checkForNucleus();
 			Utils.checkForDivan();
 			boolean AfterCheckF6 = Utils.inF6;
